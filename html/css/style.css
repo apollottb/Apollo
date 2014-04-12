@@ -1,0 +1,192 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, blockquote, q, pre, table, caption, colgroup, col, tbody, thead, tfoot, tr, th, td, ul, ol, li, dl, dt, dd, form, fieldset, legend, label, span, a, img, em, ins, del, cite, abbr, sup, sub, dfn, code, var, samp, kbd, object, script, noscript, style, iframe, embed, param, map, area,
+menu, hr, address, small, strong, i, b,
+article, aside, input, figure, footer, header, hgroup, nav, section, figcaption, time, video, audio, mark, ruby, rt, rp, bdo, source, canvas, details, summary, command,
+datalist, keygen, output, progress, meter {
+font-family: Lato, Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
+color: #7f8c8d;
+font-weight: 300;
+}
+head {
+
+}
+body {
+	width: 100%;
+	min-width: 1050px;
+	height: 100%;
+	font-size: 12px;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+/*heading */
+#heading{
+	height: 100px;
+	margin: 15px 0 0 10%;
+}
+#logo{
+	display: inline-block;
+	height: 100%;
+	width: 150px;
+}
+#logo img {
+	height: 75%;
+	padding: 15px 5px 0;
+}
+h1#title {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: 300;
+	padding: 0 0 0 50px;	
+}
+ul#uppermenu {
+	float: right;
+	margin: 55px 20% 0 0;
+	font-size: 1.2em;
+}
+ul#uppermenu li {
+	width: 30px;
+	display: inline-block;
+	padding: 10px;
+}
+.menuicon {
+	width: 100%;
+}
+.menuicon:hover {
+	opacity: 0.5;
+}
+#search-wrapper {
+	display: inline-block;
+	position: relative;
+	overflow :hidden;
+}
+#searchform{
+	float:left;
+	height: 15px;
+	padding: 5px 5px 5px 25px;
+	position: relative;
+	background: white url(../pics/search-icon.png) left center no-repeat;
+	background-size: 12%;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #7f8c8d;
+}
+.icon-search {
+	width: 10%;
+}
+
+/* navigation bar */
+#navigation{
+	display: inline-block;
+	float: left;
+	min-width: 140px;
+	height: 100%;
+	padding: 50px 10px 20px;
+	margin: 0 0 0 10%;
+	font-size: 15px;
+	line-height: 2em;
+} 
+
+#navlist {
+	list-style-type: none;
+}
+
+/* main container */
+#container{
+	width: auto;
+	min-width: 600px;
+	display: inline-block;
+	font-size: 2em;
+	margin-right: 1%;
+	padding: 30px 30px 30px 20px; 
+}
+dl.dlist {
+	padding: 15px;
+	display: inline-block;
+}
+dl.dlist dt {
+	padding: 10px;
+	position: relative;
+	clear: both;
+	float: left;
+	width: 250px;
+}
+dl.dlist dd {
+	padding: 10px;
+	overflow: auto;
+}
+.listnav {
+	width: 600px;
+	border-bottom: 1px solid #7f8c8d;
+	font-size: 0.8em;	
+}
+.listcontent {
+	width: 600px;
+	border-bottom: 1px solid #7f8c8d;
+}
+
+.decl {
+	padding: 0 20px 0;
+}
+.itinerary-container {
+	padding: 20px;
+}
+h2 {
+	font-size: 24px;
+	padding: 5px;
+}
+h3 {
+	font-size: 20px;
+	padding: 5px;
+	z-index: 10;
+}
+.date {
+	position: relative;
+	clear: both;
+	float: left;
+	width: 150px;
+	padding: 4px 0 2px 10px;
+	white-space: nowrap;
+}
+.date:after {
+	content: '';
+	display: block;
+	border-top: 1px solid #7f8c8d;
+	width: 700px;
+	height: 1px;
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+}
+.date span {
+	background: #fff;
+	position: relative;
+	padding: 0 10px 0 0;
+	z-index: 5;
+}
+.timelapse {
+	width: 50px;
+	display: inline-block;
+}
+.logistics {
+	
+}
+dl.loglist {
+	padding: 15px;
+	display: inline-block;
+}
+dl.loglist dt {
+	padding: 10px;
+	position: relative;
+	clear: both;
+	float: left;
+	width: 250px;
+}
+dl.loglist dd {
+	padding: 10px;
+	overflow: auto;
+}
