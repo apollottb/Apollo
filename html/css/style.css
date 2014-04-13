@@ -11,15 +11,23 @@ head {
 }
 body {
 	width: 100%;
-	min-width: 1050px;
+	min-width: 1150px;
 	height: 100%;
 	font-size: 12px;
 }
 a {
 	text-decoration: none;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	/* override with a proper CSS property */
+	transition:color .1s ease-out, background 0.1s ease-in;
 }
 a:hover {
-	text-decoration: underline;
+	color: #e67e22;
+	border-bottom: 1px solid #e67e22;
+	transition:color .1s ease-out, background 0.1s ease-in;
 }
 
 /*heading */
@@ -51,6 +59,11 @@ ul#uppermenu li {
 	width: 30px;
 	display: inline-block;
 	padding: 10px;
+}
+.arrow {
+	width: 3%;
+	vertical-align: bottom;
+	
 }
 .menuicon {
 	width: 100%;
@@ -101,9 +114,56 @@ ul#uppermenu li {
 	min-width: 600px;
 	display: inline-block;
 	font-size: 2em;
-	margin-right: 1%;
-	padding: 30px 30px 30px 20px; 
+	padding: 30px 0 30px 20px; 
 }
+.mainmenu {
+	margin: 50px 0 50px 0;
+	font-size: 0.8em;
+}
+.mainmenu p {
+	margin-left: 120px;
+}
+.menubutton {
+	display: inline-block;
+	-webkit-border-top-left-radius:6px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	border:1px solid #7f8c8d;
+	color:#7f8c8d;
+	font-size:20px;
+	height:70px;
+	width:200px;
+	vertical-align: bottom;
+	text-decoration:none;
+	text-align:center;
+	border-bottom: 1px solid #7f8c8d;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	transition:color .1s ease-out, background 0.1s ease-in;
+	margin: 20px;
+	padding-top: 30px;
+}
+.menubutton:hover {
+	background: #fdf7f1;
+	color: #e67e22;
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+.menubutton:active {
+	position:relative;
+	top:1px;
+}
+
 dl.dlist {
 	padding: 15px;
 	display: inline-block;
@@ -122,18 +182,29 @@ dl.dlist dd {
 .listnav {
 	width: 600px;
 	border-bottom: 1px solid #7f8c8d;
-	font-size: 0.8em;	
+	font-size: 0.8em;
+	font-weight: 400;
 }
 .listcontent {
 	width: 600px;
 	border-bottom: 1px solid #7f8c8d;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	/* override with a proper CSS property */
+	transition:color .1s ease-out, background 0.1s ease-in;
 }
-
+.listcontent:hover {
+	background: #fdf7f1;
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
 .decl {
 	padding: 0 20px 0;
 }
 .itinerary-container {
 	padding: 20px;
+	height: 100%;
 }
 h2 {
 	font-size: 24px;
@@ -165,28 +236,77 @@ h3 {
 .date span {
 	background: #fff;
 	position: relative;
-	padding: 0 10px 0 0;
+	padding: 5px 10px 5px 0;
 	z-index: 5;
 }
-.timelapse {
-	width: 50px;
-	display: inline-block;
-}
-.logistics {
+.datebar {
+	height: 30px;
+	display: block;
 	
 }
+.timelapse {
+	content: "";
+	width: 50px;
+	float: left;
+	position: relative;
+	clear: both;
+	white-space: nowrap;
+	border-left: 1px solid #123;
+}
+
+.logistics {
+	margin-left: 40px;
+	padding: 20px 0 10px;
+	display: inline-block;
+	border-left: 10px solid;
+	-webkit-border-image: 
+    	-webkit-gradient(linear, 0 0, 0 100%, from(#e67e22), to(#fff)) 1 100%;
+    -webkit-border-image: 
+    	-webkit-linear-gradient(#e67e22, #fff) 1 100%;
+    -o-border-image:
+    	     -o-linear-gradient(#e67e22, #fff) 1 100%;
+    -moz-border-image:
+    	   -moz-linear-gradient(#e67e22, #fff) 1 100%;    
+	-moz-border-radius-topleft: 8px;
+	border-top-left-radius: 8px;
+}
 dl.loglist {
-	padding: 15px;
+	padding: 15px 0 15px;
 	display: inline-block;
 }
 dl.loglist dt {
-	padding: 10px;
+	font-size: 15px;
+	padding: 15px;
 	position: relative;
 	clear: both;
 	float: left;
-	width: 250px;
+	width: 100px;
+	display: inline-block;
+	clear: both;
+	white-space: no-wrap;
 }
 dl.loglist dd {
 	padding: 10px;
 	overflow: auto;
 }
+dt span {
+	font-size: 15px;
+}
+dd span {
+	font-size: 15px;
+}
+.transfer {
+	width: 3%;
+	vertical-align: bottom;
+	
+}
+.carrierlogo {
+	width: 200px;
+	
+}
+/*
+	taro inoue
+	team apollo ltd.
+	university of pennsylvania
+	all rights reserved
+*/
