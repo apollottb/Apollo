@@ -1,0 +1,312 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, blockquote, q, pre, table, caption, colgroup, col, tbody, thead, tfoot, tr, th, td, ul, ol, li, dl, dt, dd, form, fieldset, legend, label, span, a, img, em, ins, del, cite, abbr, sup, sub, dfn, code, var, samp, kbd, object, script, noscript, style, iframe, embed, param, map, area,
+menu, hr, address, small, strong, i, b,
+article, aside, input, figure, footer, header, hgroup, nav, section, figcaption, time, video, audio, mark, ruby, rt, rp, bdo, source, canvas, details, summary, command,
+datalist, keygen, output, progress, meter {
+font-family: Lato, Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
+color: #7f8c8d;
+font-weight: 300;
+}
+head {
+
+}
+body {
+	width: 100%;
+	min-width: 1150px;
+	height: 100%;
+	font-size: 12px;
+}
+a {
+	text-decoration: none;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	/* override with a proper CSS property */
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+a:hover {
+	color: #3498db;
+	border-bottom: 1px solid #3498db;
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+
+/*heading */
+#heading{
+	height: 100px;
+	margin: 15px 0 0 10%;
+}
+#logo{
+	display: inline-block;
+	height: 100%;
+	width: 150px;
+}
+#logo img {
+	height: 75%;
+	padding: 15px 5px 0;
+}
+h1#title {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: 300;
+	padding: 0 0 0 50px;	
+}
+ul#uppermenu {
+	float: right;
+	margin: 55px 20% 0 0;
+	font-size: 1.2em;
+}
+ul#uppermenu li {
+	width: 30px;
+	display: inline-block;
+	padding: 10px;
+}
+.arrow {
+	width: 3%;
+	vertical-align: bottom;
+	
+}
+.menuicon {
+	width: 100%;
+}
+.menuicon:hover {
+	opacity: 0.5;
+}
+#search-wrapper {
+	display: inline-block;
+	position: relative;
+	overflow :hidden;
+}
+#searchform{
+	float:left;
+	height: 15px;
+	padding: 5px 5px 5px 25px;
+	position: relative;
+	background: white url(../pics/blue/search-icon.png) left center no-repeat;
+	background-size: 12%;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #7f8c8d;
+}
+.icon-search {
+	width: 10%;
+}
+
+/* navigation bar */
+#navigation{
+	display: inline-block;
+	float: left;
+	min-width: 140px;
+	height: 100%;
+	padding: 50px 10px 20px;
+	margin: 0 0 0 10%;
+	font-size: 15px;
+	line-height: 2em;
+} 
+
+#navlist {
+	list-style-type: none;
+}
+
+/* main container */
+#container{
+	width: auto;
+	min-width: 600px;
+	display: inline-block;
+	font-size: 2em;
+	padding: 30px 0 30px 20px; 
+}
+.mainmenu {
+	margin: 50px 0 50px 0;
+	font-size: 0.8em;
+}
+.mainmenu p {
+	margin-left: 120px;
+}
+.menubutton {
+	display: inline-block;
+	-webkit-border-top-left-radius:6px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	border:1px solid #7f8c8d;
+	color:#7f8c8d;
+	font-size:20px;
+	height:70px;
+	width:200px;
+	vertical-align: bottom;
+	text-decoration:none;
+	text-align:center;
+	border-bottom: 1px solid #7f8c8d;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	transition:color .1s ease-out, background 0.1s ease-in;
+	margin: 20px;
+	padding-top: 30px;
+}
+.menubutton:hover {
+	background: #e1f0fa;
+	color: #3498db;
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+.menubutton:active {
+	position:relative;
+	top:1px;
+}
+
+dl.dlist {
+	padding: 15px;
+	display: inline-block;
+}
+dl.dlist dt {
+	padding: 10px;
+	position: relative;
+	clear: both;
+	float: left;
+	width: 250px;
+}
+dl.dlist dd {
+	padding: 10px;
+	overflow: auto;
+}
+.listnav {
+	width: 600px;
+	border-bottom: 1px solid #7f8c8d;
+	font-size: 0.8em;
+	font-weight: 400;
+}
+.listcontent {
+	width: 600px;
+	border-bottom: 1px solid #7f8c8d;
+	-o-transition:color .1s ease-out, background 0.1s ease-in;
+	-ms-transition:color .1s ease-out, background 0.1s ease-in;
+	-moz-transition:color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
+	/* override with a proper CSS property */
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+.listcontent:hover {
+	background: #e1f0fa;
+	transition:color .1s ease-out, background 0.1s ease-in;
+}
+.decl {
+	padding: 0 20px 0;
+}
+.itinerary-container {
+	padding: 20px;
+	height: 100%;
+}
+h2 {
+	font-size: 24px;
+	padding: 5px;
+}
+h3 {
+	font-size: 20px;
+	padding: 5px;
+	z-index: 10;
+}
+.date {
+	position: relative;
+	clear: both;
+	float: left;
+	width: 150px;
+	padding: 4px 0 2px 10px;
+	white-space: nowrap;
+}
+.date:after {
+	content: '';
+	display: block;
+	border-top: 1px solid #7f8c8d;
+	width: 700px;
+	height: 1px;
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+}
+.date span {
+	background: #fff;
+	position: relative;
+	padding: 5px 10px 5px 0;
+	z-index: 5;
+}
+.datebar {
+	height: 30px;
+	display: block;
+	
+}
+.timelapse {
+	content: "";
+	width: 50px;
+	float: left;
+	position: relative;
+	clear: both;
+	white-space: nowrap;
+	border-left: 1px solid #123;
+}
+
+.logistics {
+	margin-left: 40px;
+	padding: 20px 0 10px;
+	display: inline-block;
+	border-left: 10px solid;
+	-webkit-border-image: 
+    	-webkit-gradient(linear, 0 0, 0 100%, from(#3498db), to(#fff)) 1 100%;
+    -webkit-border-image: 
+    	-webkit-linear-gradient(#3498db, #fff) 1 100%;
+    -o-border-image:
+    	     -o-linear-gradient(#3498db, #fff) 1 100%;
+    -moz-border-image:
+    	   -moz-linear-gradient(#3498db, #fff) 1 100%;    
+	-moz-border-radius-topleft: 8px;
+	border-top-left-radius: 8px;
+}
+dl.loglist {
+	padding: 15px 0 15px;
+	display: inline-block;
+}
+dl.loglist dt {
+	font-size: 15px;
+	padding: 15px;
+	position: relative;
+	clear: both;
+	float: left;
+	width: 100px;
+	display: inline-block;
+	clear: both;
+	white-space: no-wrap;
+}
+dl.loglist dd {
+	padding: 10px;
+	overflow: auto;
+}
+dt span {
+	font-size: 15px;
+}
+dd span {
+	font-size: 15px;
+}
+.transfer {
+	width: 3%;
+	vertical-align: bottom;
+	
+}
+.carrierlogo {
+	width: 200px;
+	
+}
+/*
+	taro inoue
+	team apollo ltd.
+	university of pennsylvania
+	all rights reserved
+*/
