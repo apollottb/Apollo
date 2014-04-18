@@ -1,5 +1,5 @@
 # Apollo: the Travel Organizer
-![alt text](http://www.nasa.gov/images/content/31033main_MM_Image_Feature_53_rs4.jpg)
+![alt text](http://images.ksc.nasa.gov/photos/1972/high/KSC-72PC-0641.jpg)
 ### Mission Statement
 
 ### Concept
@@ -11,7 +11,7 @@
 という３点から、旅行者関連の情報が増加している一方で、交通機関会社やホテル等の個々の予約情報について、統一的な整理はされておらず、旅行者が自身で整理する（E-チケットのプリントアウト、旅行用のメールボックスの作成、Dropboxへの転送）必要があるのが現状。旅行情報に限らず、個々人の扱う電子情報が煩雑化している中で、こうした旅行情報の整理は見落とされやすく、かつ、見落とした場合のコスト（交通機関の乗り過ごし・再予約／インターネット環境がない地域での予約状況の確認の困難等）を考えると、簡単に旅行情報をまとめ・複雑な旅行日程の友となるようなマネージメントツールを作ることが必要と考える。
 
 # Game: Intersection Xing
-![alt text](http://farm4.static.flickr.com/3069/2764210148_359fc1351e.jpg)
+![alt text](http://i.images.cdn.fotopedia.com/flickr-34117133-hd/New_York_City/Transportation/Taxicabs_of_New_York_City/Taxicabs_of_New_York_City.jpg)
 
 ### Concept
 Create a simple but provocative game to attract and possibly addict people 
@@ -25,6 +25,15 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 * No active engagement of brain (thoughts, assumptions and calculations) should be required
 * However there should be a certain strategy to beat the game
 * Graphically enjoyable and flawless
+
+![alt text](http://blogs-images.forbes.com/anthonykosner/files/2014/02/flappy-bird-game-screens.jpg)
+
+### Graphical Inspirations
+![alt text](http://farm4.static.flickr.com/3069/2764210148_359fc1351e.jpg)
+![alt text](http://1.bp.blogspot.com/_-mWOy3zohoU/S4MI-eoaSaI/AAAAAAAACmI/MxmoGFf_6aM/s320/traffic+cartoon.gif)
+![alt text](http://www.hamilton-baillie.co.uk/_img/_cartoons/main.jpg)
+
+
 
 ## Deadlines
 Apr 26: Working Prototype
