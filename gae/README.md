@@ -1,45 +1,34 @@
-# maven
+## maven
 
 - groupId: com.apollottb.appengine
 - artifactId: apollo
 
 
-# Google App Engine
+## Google App Engine
 
 - Project ID: apollo-13
 - Project Number: 544505541815
 
 
-# Edit:
+## Files
 
-1. apollo/apollo-war/src/main/webapp/[jsp, css, js files] (mapped to /filename.jsp)
-2. apollo/apollo-war/src/main/webapp/WEB-INF/web.xml (URL - servlet match)
-3. apollo/apollo-war/src/main/java/com/apollottb/appengine/apollo/[servlets]
+- HTML / CSS / JS
 
+    apollo/apollo-war/src/main/webapp/example.jsp (mapped to /example.jsp)
 
-# Build + Test:
+- URL-Servlet matching
 
-1. apollo/
+    apollo/apollo-war/src/main/webapp/WEB-INF/web.xml (URL - servlet match)
 
-    mvn clean install
+- Servlets
 
-2. apollo/apollo-ear
-
-    mvn appengine:devserver
-
-3. Access localhost:8080
+    apollo/apollo-war/src/main/java/com/apollottb/appengine/apollo/MyServlet.java
 
 
-# Build and Upload to GAE Server:
+## Commands
 
-1. apollo/
-
-    mvn clean install
-
-2. apollo/apollo-ear
-
-    mvn appengine:update
-
-3. Copy key.
-
-4. https://apollo-13.appspot.com
+    Command                  Description                           Where to execute
+    ---------------------------------------------------------------------------------
+    mvn clean install        Build                                 apollo/
+    mvn appengine:devserver  Test locally (localhost:8080)         apollo/apollo-ear
+    mvn appengine:update     Deploy to GAE (apollo-13.appspot.com) apollo/apollo-ear
