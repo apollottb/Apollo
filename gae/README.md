@@ -30,12 +30,16 @@
 3. Access localhost:8080
 
 
-# Upload to GAE Server:
+# Build and Upload to GAE Server:
 
-1. apollo/apollo-ear
+1. apollo/
+
+    mvn clean install
+
+2. apollo/apollo-ear
 
     mvn appengine:update
 
-2. Copy key.
+3. Copy key.
 
-3. https://apollo-13.appspot.com
+4. https://apollo-13.appspot.com
