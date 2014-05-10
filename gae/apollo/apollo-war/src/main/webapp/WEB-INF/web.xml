@@ -5,12 +5,12 @@
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
     <servlet>
-        <servlet-name>guestbook</servlet-name>
-        <servlet-class>com.apollottb.appengine.apollo.MyServlet</servlet-class>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>com.apollottb.appengine.apollo.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>guestbook</servlet-name>
-        <url-pattern>/guestbook</url-pattern>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
