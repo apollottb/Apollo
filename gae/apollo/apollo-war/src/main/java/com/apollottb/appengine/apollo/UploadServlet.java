@@ -3,9 +3,12 @@ package com.apollottb.appengine.apollo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import javax.servlet.ServletContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +18,8 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import com.apollottb.ticketparser.TicketParser;
+import com.apollottb.ticketparser.Trip;
 
 public class UploadServlet extends HttpServlet
 {
@@ -44,6 +47,7 @@ public class UploadServlet extends HttpServlet
 	{
 		String fileName = "";
 		String fileRawText = "";
+		List<Trip> trips = null;
 		
 		try
 		{
@@ -57,16 +61,19 @@ public class UploadServlet extends HttpServlet
 				fileName = item.getName();
 				log.warning("Got an uploaded file: " + fileName);
 				
-				PdfReader pdfReader = new PdfReader(stream);
-				fileRawText = PdfTextExtractor.getTextFromPage(pdfReader, 1);
+				trips = TicketParser.getTrips(stream);
 			}
 		}
 		catch (Exception e)
 		{
 			throw new ServletException("Cannot parse multipart request.", e);
 		}
-
-		resp.setContentType("text/plain");
-		resp.getWriter().println(fileName + "\n" + fileRawText + "\n");
+		
+		String url = "/summary.jsp";
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher(url);
+		
+		req.setAttribute("trips", trips);
+		dispatcher.forward(req, resp);
 	}
 }
