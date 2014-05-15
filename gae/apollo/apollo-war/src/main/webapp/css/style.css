@@ -115,7 +115,6 @@ ul#uppermenu li {
 	padding: 30px 0 30px 20px; 
 }
 #mainmenu {
-	margin-bottom:50px;
 	font-size: 0.8em;
 }
 .mainmenu p {
@@ -125,18 +124,8 @@ ul#uppermenu li {
 .menubutton {
 	display: inline-block;
 	background-color: #fff;
-	-webkit-border-top-left-radius:6px;
-	-moz-border-radius-topleft:6px;
-	border-top-left-radius:6px;
-	-webkit-border-top-right-radius:6px;
-	-moz-border-radius-topright:6px;
-	border-top-right-radius:6px;
-	-webkit-border-bottom-right-radius:6px;
-	-moz-border-radius-bottomright:6px;
-	border-bottom-right-radius:6px;
-	-webkit-border-bottom-left-radius:6px;
-	-moz-border-radius-bottomleft:6px;
-	border-bottom-left-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
 	border:1px solid #7f8c8d;
 	color:#7f8c8d;
 	font-size:20px;
@@ -152,6 +141,7 @@ ul#uppermenu li {
 	transition:color .1s ease-out, background 0.1s ease-in;
 	margin: 20px;
 	padding-top: 120px;
+	overflow: auto;
 }
 .menubutton:hover {
 	background: #fdf7f1;
@@ -162,32 +152,54 @@ ul#uppermenu li {
 	position:relative;
 	top:1px;
 }
+.menubutton form {
+	display: inline-block;
+}
 .inputbutton {
 	border: none;
 	background: #fff;
-	
 }
 #uploadform {
 	width: 280px;
-	display: inline-block;
 }
 .fileUpload {
 	position: relative;
-	overflow: hidden;
-	margin: 10px;
+	margin: 20px;
+	display: inline-block;
+	clear: right;
+}
+.fileUpload span {
+	display: inline-block;
 }
 .fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
+	height:220px;
+	width:280px;
+	margin-top: -150px;
 	padding: 0;
 	font-size: 20px;
 	cursor: pointer;
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-
+#sendbutton {
+	background-color:#ffc477;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border: none;
+	font-size: 18px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding:12px 60px;
+}
+#sendbutton:hover {
+	background-color:#e67e22;
+}
+#sendbutton:active {
+	position:relative;
+	top:1px;
+}
 dl.dlist {
 	padding: 15px;
 	display: inline-block;
