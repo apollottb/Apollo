@@ -45,7 +45,9 @@ public class UploadServlet extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException
 	{
-		String fileName = "";
+		ServletContext context = getServletContext();
+		InputStream airportsStream = context.getResourceAsStream("/WEB-INF/airports.dat");
+		String forwardUrl = "/summary.jsp";
 		String fileRawText = "";
 		List<Trip> trips = null;
 		
@@ -57,11 +59,11 @@ public class UploadServlet extends HttpServlet
 			{
 				FileItemStream item = iterator.next();
 				InputStream stream = item.openStream();
+				String fileName = item.getName();
 				
-				fileName = item.getName();
 				log.warning("Got an uploaded file: " + fileName);
 				
-				trips = TicketParser.getTrips(stream);
+				trips = TicketParser.getTrips(stream, airportsStream);
 			}
 		}
 		catch (Exception e)
@@ -69,10 +71,7 @@ public class UploadServlet extends HttpServlet
 			throw new ServletException("Cannot parse multipart request.", e);
 		}
 		
-		String url = "/summary.jsp";
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher(url);
-		
+		RequestDispatcher dispatcher = context.getRequestDispatcher(forwardUrl);
 		req.setAttribute("trips", trips);
 		dispatcher.forward(req, resp);
 	}

@@ -3,19 +3,22 @@ package com.apollottb.ticketparser;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.itextpdf.text.pdf.parser.LineSegment;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;
 import com.itextpdf.text.pdf.parser.Vector;
 
 public class Token
 {
 	public String text;
-	public float x1;
-	public float y1;
-	public float x2;
-	public float y2;
+	public float bottomLeftX;
+	public float bottomLeftY;
+	public float topRightX;
+	public float topRightY;
 	public ArrayList<Float> charsX;
 	public ArrayList<Float> charsY;
+	public ArrayList<Float> charsTopLeftX;
+	public ArrayList<Float> charsTopLeftY;
+	public ArrayList<Float> charsBottomRightX;
+	public ArrayList<Float> charsBottomRightY;
 	public float charSpaceWidth;
 	
 	private float distParallelStart;
@@ -24,28 +27,37 @@ public class Token
 	
 	public Token(TextRenderInfo renderInfo)
 	{
-		LineSegment line = renderInfo.getBaseline();
-		Vector start = line.getStartPoint();
-		Vector end = line.getEndPoint();
-		
 		text = renderInfo.getText();
-		x1 = start.get(Vector.I1);
-		y1 = start.get(Vector.I2);
-		x2 = end.get(Vector.I1);
-		y2 = end.get(Vector.I2);
 		charSpaceWidth = renderInfo.getSingleSpaceWidth();
+		
+		bottomLeftX = renderInfo.getDescentLine().getStartPoint().get(Vector.I1);
+		bottomLeftY = renderInfo.getDescentLine().getStartPoint().get(Vector.I2);
+		topRightX = renderInfo.getAscentLine().getEndPoint().get(Vector.I1);
+		topRightY = renderInfo.getAscentLine().getEndPoint().get(Vector.I2);
 		
 		List<TextRenderInfo> charInfos = renderInfo.getCharacterRenderInfos();
 		int nChars = charInfos.size();
 		charsX = new ArrayList<Float>(nChars);
 		charsY = new ArrayList<Float>(nChars);
+		charsTopLeftX = new ArrayList<Float>(nChars);
+		charsTopLeftY = new ArrayList<Float>(nChars);
+		charsBottomRightX = new ArrayList<Float>(nChars);
+		charsBottomRightY = new ArrayList<Float>(nChars);
 		for (TextRenderInfo charInfo : charInfos)
 		{
-			Vector startPoint = charInfo.getBaseline().getStartPoint();
-			charsX.add(startPoint.get(Vector.I1));
-			charsY.add(startPoint.get(Vector.I2));
+			Vector baselineStart = charInfo.getBaseline().getStartPoint();
+			Vector ascentlineStart = charInfo.getAscentLine().getStartPoint();
+			Vector descentlineEnd = charInfo.getDescentLine().getEndPoint();
+			charsX.add(baselineStart.get(Vector.I1));
+			charsY.add(baselineStart.get(Vector.I2));
+			charsTopLeftX.add(ascentlineStart.get(Vector.I1));
+			charsTopLeftY.add(ascentlineStart.get(Vector.I2));
+			charsBottomRightX.add(descentlineEnd.get(Vector.I1));
+			charsBottomRightY.add(descentlineEnd.get(Vector.I2));
 		}
 		
+		Vector start = renderInfo.getBaseline().getStartPoint();
+		Vector end = renderInfo.getBaseline().getEndPoint();
 		Vector orientationVector = end.subtract(start).normalize();
 		distParallelStart = orientationVector.dot(start);
 		distParallelEnd = orientationVector.dot(end);
@@ -55,11 +67,12 @@ public class Token
 	@Override
 	public String toString()
 	{
+		int lastIdx = text.length() - 1;
 		String s = "";
 		s += "[" + text + "]";
-		s += "(" + x1 + ", " + y1 + ")";
+		s += "(" + charsX.get(0) + ", " + charsY.get(0) + ")";
 		s += "--";
-		s += "(" + x2 + ", " + y2 + ")";
+		s += "(" + charsX.get(lastIdx) + ", " + charsY.get(lastIdx) + ")";
 		return s;
 	}
 	

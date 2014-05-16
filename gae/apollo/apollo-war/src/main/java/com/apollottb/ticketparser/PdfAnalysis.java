@@ -1,5 +1,7 @@
 package com.apollottb.ticketparser;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,18 +16,31 @@ public class PdfAnalysis
 	public ArrayList<PdfWord> airlines;
 	public ArrayList<PdfWord> dates;
 	public ArrayList<PdfWord> times;
+	public ArrayList<PdfWord> locations;
 	
 	public static final int INTERPAGE_MARGIN = 30;
 	
 	private String regexDate;
 	private String regexTime;
 	private String regexFlight;
-	private ArrayList<Float> adjustedHeights;
+	private static ArrayList<Float> adjustedHeights;
+	private ArrayList<Airport> airports;
 	
 	
-	public PdfAnalysis()
+	public PdfAnalysis(InputStream airportsFileStream)
 	{
 		trips = new ArrayList<TripDraft>();
+		try
+		{
+			AirportsFileParser airportsFileParser = new AirportsFileParser(airportsFileStream);
+			airports = airportsFileParser.airports;
+		}
+		catch (IOException e)
+		{
+			System.out.println("Failed to open airports.dat.");
+			e.printStackTrace();
+		}
+		
 		
 		regexDate = "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)( |-|/)(3[01]|[12][0-9]|0?[1-9])";
 		regexDate = "(" + regexDate + ")|(" + "(1[012]|0?[1-9])(-|/)(3[01]|[12][0-9]|0?[1-9])" + ") ";
@@ -50,33 +65,66 @@ public class PdfAnalysis
 		airlines = findMatches(content, regexFlight);
 		dates = findMatches(content, regexDate);
 		times = findMatches(content, regexTime);
-		trips = createTrips(airlines, dates, times);
+		locations = findLocations(content, airports);
+		trips = createTrips(airlines, dates, times, locations);
+	}
+	
+	
+	private static ArrayList<PdfWord> findLocations(PdfContent content, ArrayList<Airport> airports)
+	{
+		ArrayList<PdfWord> locations = new ArrayList<PdfWord>();
+		for (Airport airport : airports)
+		{
+			String regex = airport.iata + "|" + airport.icao;
+			Pattern p = Pattern.compile(regex);
+			Matcher m = p.matcher(content.text);
+			
+			while (m.find())
+			{
+				PdfWord word = null;
+				int idxFirst = m.start();
+				int idxLast = m.end() - 1;
+				
+				// Don't consider matches with any letters in the front or back.
+				if (idxFirst > 0)
+				{
+					if (Character.isLetter(content.text.charAt(idxFirst - 1)) ||
+						Character.isLetter(content.text.charAt(idxLast + 1)))
+					{
+						continue;
+					}
+				}
+				
+				word = new PdfWord();
+				word.text = m.group();
+				word.setBoundingBox(content.charsX1.get(idxFirst), content.charsY1.get(idxFirst),
+									content.charsX2.get(idxLast), content.charsY2.get(idxLast));
+				word.page = content.getPageNumber(idxFirst) - 1;
+				word.y2 = adjustedHeights.get(content.getPageNumber(idxFirst) - 1) + word.y;
+				
+				locations.add(word);
+			}
+		}
+		return locations;
 	}
 	
 	
 	private ArrayList<PdfWord> findMatches(PdfContent content, String regex)
 	{
 		Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-		Matcher m = p.matcher(content.allText);
+		Matcher m = p.matcher(content.text);
 		ArrayList<PdfWord> matchedWords = new ArrayList<PdfWord>();
 		
 		while (m.find())
 		{
-			PdfWord word = new PdfWord(m.group());
-			
+			PdfWord word = null;
 			int idx = m.start();
 			
-			word.x = content.allCharsX.get(idx);
-			word.y = content.allCharsY.get(idx);
-			word.y2 = adjustedHeights.get(content.getPageNumber(idx)) + word.y;
-			
-			
-		    /*
-		    for (int i = m.start(); i < m.end(); ++i)
-		    {
-		    	characterPositions.add(pdfContent.characterPositions.get(i));
-		    }
-		    */
+			word = new PdfWord();
+			word.text = m.group();
+			word.x = content.charsX.get(idx);
+			word.y = content.charsY.get(idx);
+			word.y2 = adjustedHeights.get(content.getPageNumber(idx) - 1) + word.y;
 		    
 		    matchedWords.add(word);
 		}
@@ -85,7 +133,7 @@ public class PdfAnalysis
 	}
 	
 	
-	private static ArrayList<TripDraft> createTrips(List<PdfWord> airlines, List<PdfWord> dates, List<PdfWord> times)
+	private static ArrayList<TripDraft> createTrips(List<PdfWord> airlines, List<PdfWord> dates, List<PdfWord> times, List<PdfWord> airports)
 	{
 		ArrayList<TripDraft> trips = new ArrayList<TripDraft>();
 		
@@ -99,6 +147,8 @@ public class PdfAnalysis
 			trip.arrivalTime = correspondingTimes.get(1);
 			trip.departureDate = findCorrespondingDate(trip.departureTime, dates);
 			trip.arrivalDate = findCorrespondingDate(trip.arrivalTime, dates);
+			trip.origin = findCorrespondingLocation(trip.departureTime, airports);
+			trip.destination = findCorrespondingLocation(trip.arrivalTime, airports);
 			
 			trips.add(trip);
 		}
@@ -120,7 +170,7 @@ public class PdfAnalysis
 		for (PdfWord time : times)
 		{
 			float deltaY = time.y2 - flight.y2;
-			if (deltaY < -20.0f) continue;
+			if (deltaY < -25.0f) continue;
 			
 			// Time closer to flight is departure (since departure is listed first).
 			if (minDeltaY1 > deltaY)
@@ -173,6 +223,28 @@ public class PdfAnalysis
 	}
 	
 	
+	private static PdfWord findCorrespondingLocation(PdfWord time, List<PdfWord> airports)
+	{
+		if (time == null) return null;
+		float minDelta = Float.MAX_VALUE;
+		PdfWord correspondingAirport = null;
+		
+		for (PdfWord airport : airports)
+		{
+			float deltaX = time.x - airport.x;
+			float deltaY = time.y2 - airport.y2;
+			float delta = deltaX * deltaX + deltaY * deltaY;
+			
+			if (minDelta > delta)
+			{
+				minDelta = delta;
+				correspondingAirport = airport;
+			}
+		}
+		
+		return correspondingAirport;
+	}
+	
 	// Convert TripDraft to Trip.
 	public List<Trip> getTrips()
 	{
@@ -194,5 +266,14 @@ public class PdfAnalysis
 		}
 		
 		return finalTrips;
+	}
+	
+	
+	public void dispDebugInfo()
+	{
+		for (TripDraft trip : trips)
+		{
+			System.out.println(trip);
+		}
 	}
 }
