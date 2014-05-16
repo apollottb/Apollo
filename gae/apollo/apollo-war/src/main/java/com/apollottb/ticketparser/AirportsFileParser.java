@@ -13,19 +13,19 @@ public class AirportsFileParser
 {
 	public ArrayList<Airport> airports;
 	
-	// http://openflights.org/data.html
-	// Encoding: ISO 8859-1 (Latin-1)
+	
 	public AirportsFileParser(InputStream stream) throws IOException
 	{
 		airports = new ArrayList<Airport>();
-		readFile(stream);
+		
+		CSVReader reader = new CSVReader(new InputStreamReader(stream, Charset.forName("ISO-8859-1")));
+		parseFile(reader);
 	}
 	
 	
-	private void readFile(InputStream stream) throws IOException
+	private void parseFile(CSVReader reader) throws IOException
 	{
 		LinkedList<Airport> ports = new LinkedList<Airport>();
-		CSVReader reader = new CSVReader(new InputStreamReader(stream, Charset.forName("ISO-8859-1")));
 		String[] nextLine;
 		
 		while ((nextLine = reader.readNext()) != null)

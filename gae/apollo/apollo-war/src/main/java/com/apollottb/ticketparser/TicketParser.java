@@ -9,27 +9,28 @@ import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 
 public class TicketParser
 {
-	public static List<Trip> getTrips(InputStream pdfStream, InputStream airportsFileStream) throws IOException
+	public static List<Trip> getTrips(InputStream pdfStream, InputStream airportsFileStream, InputStream airlinesFileStream) throws IOException
 	{
-		PdfAnalysis analysis = analyze(pdfStream, airportsFileStream);
-		return analysis.getTrips();
+		PdfAnalysis analysis = analyze(pdfStream, airportsFileStream, airlinesFileStream);
+		List<Trip> trips = analysis.getTrips();
+		return trips;
 	}
 	
 	
-	public static PdfAnalysis getTripsDebug(InputStream pdfStream, InputStream airportsFileStream) throws IOException
+	public static PdfAnalysis getTripsDebug(InputStream pdfStream, InputStream airportsFileStream, InputStream airlinesFileStream) throws IOException
 	{
-		PdfAnalysis analysis = analyze(pdfStream, airportsFileStream);
+		PdfAnalysis analysis = analyze(pdfStream, airportsFileStream, airlinesFileStream);
 		return analysis;
 	}
 	
 	
-	public static PdfAnalysis analyze(InputStream pdfStream, InputStream airportsFileStream) throws IOException
+	public static PdfAnalysis analyze(InputStream pdfStream, InputStream airportsFileStream, InputStream airlinesFileStream) throws IOException
 	{
 		PdfReader reader = new PdfReader(pdfStream);
 		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
 		PdfContent content = new PdfContent();
 		int nPages = reader.getNumberOfPages();
-		PdfAnalysis analysis = new PdfAnalysis(airportsFileStream);
+		PdfAnalysis analysis = new PdfAnalysis(airportsFileStream, airlinesFileStream);
 		
 		for (int i = 1; i <= nPages; ++i)
 		{

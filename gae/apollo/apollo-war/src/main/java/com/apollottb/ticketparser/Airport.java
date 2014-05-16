@@ -1,8 +1,11 @@
 package com.apollottb.ticketparser;
 
 import java.util.TimeZone;
+import java.util.regex.Pattern;
 
-public class Airport
+import org.apache.commons.lang3.StringUtils;
+
+public class Airport implements Searchable<AirportWord>
 {
 	public String name = null;
 	public String city = null;
@@ -38,7 +41,7 @@ public class Airport
 	
 	public void setIata(String s)
 	{
-		if (s.length() == 3)
+		if (s.length() == 3 && StringUtils.isAlpha(s))
 		{
 			iata = getValue(s);
 		}
@@ -47,7 +50,7 @@ public class Airport
 	
 	public void setIcao(String s)
 	{
-		if (s.length() == 4)
+		if (s.length() == 4 && StringUtils.isAlpha(s))
 		{
 			icao = getValue(s);
 		}
@@ -83,5 +86,51 @@ public class Airport
 		String hours = ((h < 10) ? "0": "") + h;
 		String minutes = ((m < 10) ? "0" : "") + m;
 		timeZone = TimeZone.getTimeZone("GMT" + sign + hours + minutes);
+	}
+	
+
+	@Override
+	public String toString()
+	{
+		String s = "";
+		s += "Airport Name: " + name + ", ";
+		s += "City: " + city + ", ";
+		s += "Country: " + country + ", ";
+		s += "IATA: " + iata + ", ";
+		s += "ICAO: " + icao + ", ";
+		s += "Latitude: " + latitude + ", ";
+		s += "Longitude: " + longitude + ", ";
+		s += "Altitude: " + altitude + ", ";
+		s += "Time Zone: " + timeZone;
+		return s;
+	}
+	
+	
+	@Override
+	public Pattern getPattern()
+	{
+		String regex;
+		if (iata == null && icao == null) return null;
+		if (iata != null && icao == null)
+		{
+			regex = iata;
+		}
+		else if (iata == null && icao != null)
+		{
+			regex = icao;
+		}
+		else
+		{
+			regex = "(" + iata + ")|(" + icao + ")";
+		}
+		
+		return Pattern.compile(regex);
+	}
+
+
+	@Override
+	public AirportWord createPdfWord()
+	{
+		return new AirportWord(this);
 	}
 }
