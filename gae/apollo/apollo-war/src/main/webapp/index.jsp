@@ -56,9 +56,12 @@
 </div>
 <div id="container">
 	<div id="description">
+		<img src="pics/demo-2.0.gif" title="How to use Nektar"/>
+		<!--
 		<p>
 		Nektar&trade; can help you better organize your piles of Etickets, hotel reservations and maps into a single and sleek itinerary made just for you. Simply drop your Eticket PDFs or forward E-mail confirmations to us, you will get the concise itinerary instantaneously. Click on the links to refer flight status, airport locations and more. 
 		</p>
+		-->
 	</div>
 	
 	<div align="center" id="mainmenu">
