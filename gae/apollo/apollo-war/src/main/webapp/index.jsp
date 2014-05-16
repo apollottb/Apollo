@@ -41,9 +41,6 @@
 		<div id="logo"><a href="/" title="apollo home"><img src="./pics/paperplane-logo.png"></a></div>	
 		<h1 id="title">Nektar</h1>
 		<ul id="uppermenu">
-			<!--
-			<li><a href="mailto:itinerary@apollo.jp"><img class="menuicon" src="pics/mail-icon.png" title="send email"/></a></li>
-			-->
 			<li><a href=""><img class="menuicon" src="pics/new-icon.png" title="add new trip"/></a></li>
 			<li><form id="search-wrapper" method="get" action="http://google.com/search" target="blank"><input id="searchform" type="text" results="0" placeholder="Search"/></form></li>
 		</ul>

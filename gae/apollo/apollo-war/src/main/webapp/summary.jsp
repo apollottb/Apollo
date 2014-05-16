@@ -109,11 +109,4 @@
 <footer>
 
 </footer>
-<!-- 
-	taro inoue
-	team apollo ltd.
-	university of pennsylvania
-	all rights reserved
- -->
-
 </html>
