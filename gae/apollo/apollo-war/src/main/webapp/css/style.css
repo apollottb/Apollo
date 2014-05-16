@@ -1,8 +1,10 @@
 html, body, div, h1, h2, h3, h4, h5, h6, p, button, blockquote, q, pre, table, caption, colgroup, col, tbody, thead, tfoot, tr, th, td, ul, ol, li, dl, dt, dd, form, fieldset, legend, label, span, a, img, em, ins, del, cite, abbr, sup, sub, dfn, code, var, samp, kbd, object, script, noscript, style, iframe, embed, param, map, area,
 menu, hr, address, small, strong, i, b, article, aside, input, figure, footer, header, hgroup, nav, section, figcaption, time, video, audio, mark, ruby, rt, rp, bdo, source, canvas, details, summary, command, datalist, keygen, output, progress, meter {
-font-family: Lato, Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
-color: #7f8c8d;
-font-weight: 300;
+	font-family: Lato, Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
+	color: #7f8c8d;
+	font-weight: 400;
+	background-color: #fdfdfd
+
 }
 head {
 
@@ -31,7 +33,7 @@ a:hover {
 /*heading */
 #heading{
 	height: 100px;
-	margin: 15px 0 0 10%;
+	margin-left: 10%;
 }
 #logo{
 	display: inline-block;
@@ -44,9 +46,9 @@ a:hover {
 }
 h1#title {
 	display: inline-block;
-	font-size: 30px;
-	font-weight: 300;
-	padding: 0 0 0 50px;	
+	font-size: 35px;
+	font-weight: 700;
+	padding: 0 0 0 100px;	
 }
 ul#uppermenu {
 	float: right;
@@ -96,7 +98,7 @@ ul#uppermenu li {
 	float: left;
 	min-width: 140px;
 	height: 100%;
-	padding: 50px 10px 20px;
+	padding: 40px 10px 20px;
 	margin: 0 0 0 10%;
 	font-size: 15px;
 	line-height: 2em;
@@ -111,19 +113,27 @@ ul#uppermenu li {
 	width: auto;
 	min-width: 600px;
 	display: inline-block;
-	font-size: 2em;
-	padding: 30px 0 30px 20px; 
+	padding-top: 30px;
+	padding-left: 20px; 
 }
+#description {
+	display: inline-block;
+	width: 600px;
+	padding: 10px 20px;
+}
+#description p {
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 1.5;
+}	
+
+/*upload buttons */
 #mainmenu {
 	font-size: 0.8em;
 }
-.mainmenu p {
-	font-size: 1.3em;
-	margin-top: 20px;
-}
 .menubutton {
 	display: inline-block;
-	background-color: #fff;
+	background-color: #fdfdfd;
 	-webkit-border-radius:6px;
 	-moz-border-radius:6px;
 	border:1px solid #7f8c8d;
@@ -154,6 +164,7 @@ ul#uppermenu li {
 }
 .menubutton form {
 	display: inline-block;
+	background-color: transparent;
 }
 .inputbutton {
 	border: none;
@@ -161,7 +172,14 @@ ul#uppermenu li {
 }
 #uploadform {
 	width: 280px;
+	background: #fdfdfd;
 }
+#uploadform:hover {
+	background: #fdf7f1;
+	transition:color .1s ease-out, background 0.1s ease-in;
+	cursor: pointer;
+}
+
 .fileUpload {
 	position: relative;
 	margin: 20px;
@@ -170,6 +188,7 @@ ul#uppermenu li {
 }
 .fileUpload span {
 	display: inline-block;
+	background-color: transparent;
 }
 .fileUpload input.upload {
 	height:220px;
@@ -336,9 +355,3 @@ dd span {
 	width: 200px;
 	
 }
-/*
-	taro inoue
-	team apollo ltd.
-	university of pennsylvania
-	all rights reserved
-*/

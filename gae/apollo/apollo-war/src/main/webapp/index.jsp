@@ -10,14 +10,14 @@
 	<link rel="icon" type="image/png" href="pics/favicon.png">
 
 	<!-- title+description -->
-	<title>nektar | Trip Organizer</title>
+	<title>Nektar | Trip Organizer</title>
 
 	<!-- css -->
 	<link rel="stylesheet" href="css/reset.css" media="all">
 	<link rel="stylesheet" href="css/style.css" media="all">
 
 	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Aclonica' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
@@ -38,10 +38,12 @@
 
 <header>
 	<div id = "heading">
-		<div id="logo"><a href="index.jsp" title="apollo home"><img src="./pics/paperplane-logo.png"></a></div>	
-		<h1 id="title">nektar</h1>
+		<div id="logo"><a href="/" title="apollo home"><img src="./pics/paperplane-logo.png"></a></div>	
+		<h1 id="title">Nektar</h1>
 		<ul id="uppermenu">
+			<!--
 			<li><a href="mailto:itinerary@apollo.jp"><img class="menuicon" src="pics/mail-icon.png" title="send email"/></a></li>
+			-->
 			<li><a href=""><img class="menuicon" src="pics/new-icon.png" title="add new trip"/></a></li>
 			<li><form id="search-wrapper" method="get" action="http://google.com/search" target="blank"><input id="searchform" type="text" results="0" placeholder="Search"/></form></li>
 		</ul>
@@ -51,13 +53,20 @@
 <body>
 <div id = "navigation">
 	<ul id ="navlist">
-		<li><a href="index.jsp">Home</a></li>
+		<li><a href="/">Home</a></li>
 		<li><a href="">Upload PDFs</a></li>
 		<li><a href="">Forward EMail Confirmations</a></li>
 		<li><a href="">FAQ</a></li>
+		<li><a href="">About</a></li>
 	</ul>
 </div>
 <div id = "container">
+	<div id="description">
+		<p>
+		Nektar&trade; can help you better organize your piles of Etickets, hotel reservations and maps into a single and sleek itinerary made just for you. Simply drop your Eticket PDFs or forward E-mail confirmations to us, you will get the concise itinerary instantaneously. Click on the links to refer flight status, airport locations and more. 
+		</p>
+	</div>
+	
 	<div align="center" id="mainmenu">
 		<div class="fileUpload menubutton">
 			<form id="uploadform" action="upload" method="post" enctype="multipart/form-data">
@@ -67,7 +76,7 @@
 			</form>		
 		</div>
 		<div class="menubutton">
-			<form action="">Forward Email Comfirmations</form>
+			<form action="">Forward Email Confirmations</form>
 		</div>
 	</div>
 <!--
@@ -121,11 +130,5 @@ $(document).ready(function() {
 <footer>
 
 </footer>
-<!-- 
-	taro inoue
-	team apollo ltd.
-	university of pennsylvania
-	all rights reserved
- -->
 
 </html>

@@ -13,7 +13,7 @@
 	<link rel="icon" type="image/png" href="pics/favicon.png">
 
 	<!-- title+description -->
-	<title>Your Itinerary | nektar</title>
+	<title>Your Itinerary | Nektar</title>
 
 	<!-- css -->
 	<link rel="stylesheet" href="/css/reset.css" media="all">
@@ -24,7 +24,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Aclonica' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
-
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		
 	<!-- ga -->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -59,7 +60,7 @@
 		<div id="logo">
 			<a href="index.jsp"><img src="./pics/paperplane-logo.png"></a>
 		</div>	
-		<h1 id="title"><a href="index.jsp">nektar</a> > trip.depDate to trip.arrDate</h1>
+		<h1 id="title"><a href="/">Nektar</a> > trip.depDate to trip.arrDate</h1>
 		<ul id="uppermenu">
 			<li><a href="""><img class="menuicon" src="pics/print-icon.png" title="print itinerary"/></a></li>
 			<li><a href="mailto:itinerary@apollo.jp""><img class="menuicon" src="pics/mail-icon.png" title="email itinerary"/></a></li>
@@ -72,10 +73,11 @@
 <body>
 <div id = "navigation">
 	<ul id ="navlist">
-		<li><a href="index.jsp">Home</a></li>
+		<li><a href="/">Home</a></li>
 		<li><a href="">Add Eticket PDFs</a></li>
 		<li><a href="">Add Email Confirmations</a></li>
 		<li><a href="">FAQ</a></li>
+		<li><a href="">About</a></li>
 	</ul>
 </div>
 
