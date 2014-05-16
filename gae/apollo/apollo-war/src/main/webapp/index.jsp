@@ -18,7 +18,6 @@
 
 	<!-- fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Aclonica' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -55,7 +54,7 @@
 		<li><a href="">About</a></li>
 	</ul>
 </div>
-<div id = "container">
+<div id="container">
 	<div id="description">
 		<p>
 		Nektar&trade; can help you better organize your piles of Etickets, hotel reservations and maps into a single and sleek itinerary made just for you. Simply drop your Eticket PDFs or forward E-mail confirmations to us, you will get the concise itinerary instantaneously. Click on the links to refer flight status, airport locations and more. 
@@ -65,8 +64,8 @@
 	<div align="center" id="mainmenu">
 		<div class="fileUpload menubutton">
 			<form id="uploadform" action="upload" method="post" enctype="multipart/form-data">
-				<span>Upload Eticket PDFs</span>
-				<input class="upload" type="file" name="file" value="Select PDFs" multiple />
+				<span id="span1">Upload Eticket PDFs</span>
+				<p><input class="upload" type="file" name="file" value="Select PDFs" multiple id="myfile1" onChange="javascript:showSrc(this);" size="20"><a href="#" id="myframe1"></a></input><p>
 				<input id="sendbutton" type="submit" value="Send"/>	
 			</form>		
 		</div>
@@ -74,7 +73,8 @@
 			<form action="">Forward Email Confirmations</form>
 		</div>
 	</div>
-<!--
+
+	<!--
 	<div align="center" class="mainmenu">
 	<form action="/upload" class="menubutton upload dropzone" method="post" enctype="multipart/form-data"></form>
 	<form href="" class="menubutton forward">Forward email confirmations</form>
@@ -110,6 +110,34 @@
 	-->
 </div>
 
+<script>
+
+	function addFileFild(){
+	  ufile = ufile+1;
+	  myfile = myfile+1;
+	  myframe = myframe+1;
+	  $("#addFileFild").before('<p><input type="file" name="ufile'+ufile+'" id="myfile' +myfile+'" onChange="javascript:showSrc();" size="20"><a href="#" id="myframe' +myframe+'"></a></p>');
+	return 0;
+	}
+	
+	var spanChange = $("<input />");
+	function showSrc(obj) {
+	  //obj.nextSibling.href = obj.value;
+	  // this is for Chrome and IE8+ excluding C:/fakepath/...
+	  var filename = obj.value.replace(/^.*\\/, '')
+	  //Write filename to page.
+	  spanChange.val(filename).change();
+	};
+
+	$(function() {
+		spanChange.change(function(e) {
+			var $val = $(this).val(),
+				$newVal = $('input[type=file]').val().replace("C:\\fakepath\\", "");
+			$("#span1").text($newVal);
+		});
+	});
+
+</script>
 </body>
 <footer>
 
