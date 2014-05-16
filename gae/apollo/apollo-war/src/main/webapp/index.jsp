@@ -10,7 +10,7 @@
 	<link rel="icon" type="image/png" href="pics/favicon.png">
 
 	<!-- title+description -->
-	<title>Nektar | Trip Organizer</title>
+	<title>Nektar : Trip Organizer</title>
 
 	<!-- css -->
 	<link rel="stylesheet" href="css/reset.css" media="all">
@@ -38,8 +38,8 @@
 
 <header>
 	<div id = "heading">
-		<div id="logo"><a href="/" title="apollo home"><img src="./pics/paperplane-logo.png"></a></div>	
-		<h1 id="title">Nektar</h1>
+		<div id="logo"><a href="/" title="Nektar home"><img src="./pics/paperplane-logo.png"></a></div>	
+		<h1 id="title"><a href="/" title="Nektar home">Nektar<a/></h1>
 		<ul id="uppermenu">
 			<li><a href=""><img class="menuicon" src="pics/new-icon.png" title="add new trip"/></a></li>
 			<li><form id="search-wrapper" method="get" action="http://google.com/search" target="blank"><input id="searchform" type="text" results="0" placeholder="Search"/></form></li>
@@ -51,8 +51,6 @@
 <div id = "navigation">
 	<ul id ="navlist">
 		<li><a href="/">Home</a></li>
-		<li><a href="">Upload PDFs</a></li>
-		<li><a href="">Forward Email Confirmations</a></li>
 		<li><a href="">FAQ</a></li>
 		<li><a href="">About</a></li>
 	</ul>
@@ -84,44 +82,33 @@
 	</div>
 	<!--
 	<dl class="dlist">
-		<div class="listnav"><dt><a href="">date</a></dt>
-		<dd><a href="">destination</a></dd></div>
-		<div class="listcontent"><dt><a href="itinerary.html">MM.DD.YYYY</a></dt>
-		<dd><a href="itinerary.html">NYCNY</a></dd></div>
-		<div class="listcontent"><dt><a href="">MM.DD.YYYY</a></dt>
-		<dd><a href="">NYCNY</a></dd></div>
-		<div class="listcontent"><dt><a href="">MM.DD.YYYY</a></dt>
-		<dd><a href="">NYCNY</a></dd></div>
-		<div class="listcontent"><dt><a href="">MM.DD.YYYY</a></dt>
-		<dd><a href="">NYCNY</a></dd></div>
-		<div class="listcontent"><dt><a href="">MM.DD.YYYY</a></dt>
-		<dd><a href="">NYCNY</a></dd></div>
+		<div class="listnav">
+			<dt><a href="">date</a></dt>
+			<dd><a href="">destination</a></dd>
+		</div>
+		<div class="listcontent">
+			<dt><a href="itinerary.html">MM.DD.YYYY</a></dt>
+			<dd><a href="itinerary.html">NYCNY</a></dd>
+		</div>
+		<div class="listcontent">
+			<dt><a href="">MM.DD.YYYY</a></dt>
+			<dd><a href="">NYCNY</a></dd>
+		</div>
+		<div class="listcontent">
+			<dt><a href="">MM.DD.YYYY</a></dt>
+			<dd><a href="">NYCNY</a></dd>
+		</div>
+		<div class="listcontent">
+			<dt><a href="">MM.DD.YYYY</a></dt>
+			<dd><a href="">NYCNY</a></dd>
+		</div>
+		<div class="listcontent">
+			<dt><a href="">MM.DD.YYYY</a></dt>
+			<dd><a href="">NYCNY</a></dd>
+		</div>
 	</dl>
 	-->
 </div>
-
-<!--
-<script type="text/javascript">
-$(document).ready(function() {
-  // when the tag with id="btn" is clicked, animate some properties of the element with id="dv1"
-  // then change the text in the #btn
-  $(".upload").click(function() {
-    $(".upload").animate(
-    {
-      width: "450px",
-      height: "300px",
-    }, 1000, "linear")
-	.addClass("pdfdrop")
-	.text("drop your files or click")
-	$(".forward").animate (
-	{
-	  width: "100px",
-	  height: "300px",
-	}, 1000, "linear").text("forward")
-	});
-});
-</script>
--->
 
 </body>
 <footer>

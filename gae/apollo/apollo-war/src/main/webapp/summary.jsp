@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="/css/style.css" media="all">
 
 	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,400' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Aclonica' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
@@ -60,10 +60,10 @@
 		<div id="logo">
 			<a href="/"><img src="./pics/paperplane-logo.png"></a>
 		</div>	
-		<h1 id="title"><a href="/">Nektar</a> > trip.depDate to trip.arrDate</h1>
+		<h1 id="title"><a href="/">Nektar</a> <span>> trip.depDate to trip.arrDate</span></h1>
 		<ul id="uppermenu">
-			<li><a href="""><img class="menuicon" src="pics/print-icon.png" title="print itinerary"/></a></li>
-			<li><a href="mailto:itinerary@apollo.jp""><img class="menuicon" src="pics/mail-icon.png" title="email itinerary"/></a></li>
+			<li><a href="" value="Print Div" onclick="PrintElem("#itinerary-container")"><img class="menuicon" src="pics/print-icon.png" title="print itinerary"/></a></li>
+			<li><a href="mailto:"><img class="menuicon" src="pics/mail-icon.png" title="email itinerary"/></a></li>
 			<li><a href=""><img class="menuicon" src="pics/new-icon.png" title="add new trip"/></a></li>
 			<li><form id="search-wrapper" method="get" action="http://google.com/search" target="blank"><input id="searchform" type="text" results="0" placeholder="Search"/></form></li>
 		</ul>
@@ -71,6 +71,7 @@
 </header>
 
 <body>
+
 <div id = "navigation">
 	<ul id ="navlist">
 		<li><a href="/">Home</a></li>
@@ -105,6 +106,28 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+
+    function PrintElem(elem)
+    {
+        Popup($(elem).html());
+    }
+
+    function Popup(data) 
+    {
+        var mywindow = window.open('', '#itinerary-container', 'height=auto,width=650');
+        mywindow.document.write('<html><head><title>Your Itinerary</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+
+</script>
 </body>
 <footer>
 

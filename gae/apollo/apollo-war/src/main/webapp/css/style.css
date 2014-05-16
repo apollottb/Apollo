@@ -44,9 +44,14 @@ a:hover {
 }
 h1#title {
 	display: inline-block;
+	padding: 0 0 0 70px;	
+}
+h1#title a {
 	font-size: 35px;
 	font-weight: 700;
-	padding: 0 0 0 100px;	
+}
+h1#title span {
+	font-size: 30px;
 }
 ul#uppermenu {
 	float: right;
@@ -94,7 +99,7 @@ ul#uppermenu li {
 #navigation{
 	display: inline-block;
 	float: left;
-	min-width: 140px;
+	min-width: 165px;
 	height: 100%;
 	padding: 40px 10px 20px;
 	margin: 0 0 0 10%;
@@ -112,7 +117,8 @@ ul#uppermenu li {
 	min-width: 600px;
 	display: inline-block;
 	padding-top: 30px;
-	padding-left: 20px; 
+	padding-left: 20px;
+	font-size: 28px;
 }
 #description {
 	display: inline-block;
@@ -122,7 +128,7 @@ ul#uppermenu li {
 #description p {
 	font-weight: 300;
 	font-size: 20px;
-	line-height: 1.5;
+	line-height: 1.6;
 }	
 
 /*upload buttons */
@@ -212,11 +218,14 @@ ul#uppermenu li {
 }
 #sendbutton:hover {
 	background-color:#e67e22;
+	color: #2c3e50;
 }
 #sendbutton:active {
 	position:relative;
 	top:1px;
 }
+
+/*summary.jsp content styles*/
 dl.dlist {
 	padding: 15px;
 	display: inline-block;
@@ -245,7 +254,6 @@ dl.dlist dd {
 	-ms-transition:color .1s ease-out, background 0.1s ease-in;
 	-moz-transition:color .1s ease-out, background 0.1s ease-in;
 	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
-	/* override with a proper CSS property */
 	transition:color .1s ease-out, background 0.1s ease-in;
 }
 .listcontent:hover {
@@ -256,7 +264,7 @@ dl.dlist dd {
 	padding: 0 20px 0;
 }
 .itinerary-container {
-	padding: 20px;
+	padding: 5px;
 	height: 100%;
 }
 h2 {
@@ -287,7 +295,7 @@ h3 {
 	z-index: 1;
 }
 .date span {
-	background: #fff;
+	background: #fdfdfd;
 	position: relative;
 	padding: 5px 10px 5px 0;
 	z-index: 5;
