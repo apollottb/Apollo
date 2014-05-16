@@ -22,9 +22,21 @@ public class TripDraft
 	public String getDepartureDate() {return getText(departureDate);}
 	public String getArrivalTime() {return getText(arrivalTime);}
 	public String getArrivalDate() {return getText(arrivalDate);}
-	public String getOrigin() {return getText(origin);}
-	public String getDestination() {return getText(destination);}
 	
+	
+	public String getOrigin() {return getLocation(origin);}
+	public String getDestination() {return getLocation(destination);}	
+	
+	private static String getLocation(PdfWord word)
+	{
+		if (word == null)
+		{
+			return "null";
+		}
+		
+		Airport airport = word.airport;
+		return airport.name + " (" + airport.iata + ")";
+	}
 	
 	private String getText(PdfWord word)
 	{
