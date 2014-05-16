@@ -20,7 +20,6 @@ a {
 	-ms-transition:color .1s ease-out, background 0.1s ease-in;
 	-moz-transition:color .1s ease-out, background 0.1s ease-in;
 	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
-	/* override with a proper CSS property */
 	transition:color .1s ease-out, background 0.1s ease-in;
 }
 a:hover {

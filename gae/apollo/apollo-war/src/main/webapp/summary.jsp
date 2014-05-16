@@ -58,7 +58,7 @@
 <header>
 	<div id = "heading">
 		<div id="logo">
-			<a href="index.jsp"><img src="./pics/paperplane-logo.png"></a>
+			<a href="/"><img src="./pics/paperplane-logo.png"></a>
 		</div>	
 		<h1 id="title"><a href="/">Nektar</a> > trip.depDate to trip.arrDate</h1>
 		<ul id="uppermenu">

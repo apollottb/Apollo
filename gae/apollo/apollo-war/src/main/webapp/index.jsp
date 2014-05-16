@@ -52,7 +52,7 @@
 	<ul id ="navlist">
 		<li><a href="/">Home</a></li>
 		<li><a href="">Upload PDFs</a></li>
-		<li><a href="">Forward EMail Confirmations</a></li>
+		<li><a href="">Forward Email Confirmations</a></li>
 		<li><a href="">FAQ</a></li>
 		<li><a href="">About</a></li>
 	</ul>
