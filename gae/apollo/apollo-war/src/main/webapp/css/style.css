@@ -1,6 +1,6 @@
 html, body, div, h1, h2, h3, h4, h5, h6, p, button, blockquote, q, pre, table, caption, colgroup, col, tbody, thead, tfoot, tr, th, td, ul, ol, li, dl, dt, dd, form, fieldset, legend, label, span, a, img, em, ins, del, cite, abbr, sup, sub, dfn, code, var, samp, kbd, object, script, noscript, style, iframe, embed, param, map, area,
 menu, hr, address, small, strong, i, b, article, aside, input, figure, footer, header, hgroup, nav, section, figcaption, time, video, audio, mark, ruby, rt, rp, bdo, source, canvas, details, summary, command, datalist, keygen, output, progress, meter {
-	font-family: Lato, Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
+	font-family: Lato,Hiragino Kaku Gothic Pro,Meiryo,MS PGothic,sans-serif;
 	color: #2c3e50;
 	font-weight: 400;
 	background-color: #fdfdfd;
@@ -177,6 +177,9 @@ ul#uppermenu li {
 #uploadform {
 	width: 280px;
 	background: #fdfdfd;
+}
+#uploadform p {
+	background-color: transparent;
 }
 #uploadform:hover {
 	background: #fdf7f1;
