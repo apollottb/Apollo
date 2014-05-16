@@ -85,7 +85,7 @@ public class PdfAnalysis
 				int idxFirst = m.start();
 				int idxLast = m.end() - 1;
 				
-				// Don't consider matches with any letters in the front or back.
+				// Skip matches with any letters in the front or back.
 				if (idxFirst > 0)
 				{
 					if (Character.isLetter(content.text.charAt(idxFirst - 1)) ||
@@ -101,6 +101,7 @@ public class PdfAnalysis
 									content.charsX2.get(idxLast), content.charsY2.get(idxLast));
 				word.page = content.getPageNumber(idxFirst) - 1;
 				word.y2 = adjustedHeights.get(content.getPageNumber(idxFirst) - 1) + word.y;
+				word.set(airport);
 				
 				locations.add(word);
 			}

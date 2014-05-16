@@ -13,6 +13,14 @@ public class PdfWord
 	public float height;
 	public int page;
 	
+	public static enum Type
+	{
+		LOCATION, DATE, TIME, NONE
+	}
+	
+	public Type type = Type.NONE;
+	public Airport airport = null;
+	
 	
 	public PdfWord()
 	{
@@ -27,5 +35,11 @@ public class PdfWord
 		height = y2 - y1;
 		x = topLeftX + width / 2;
 		y = topLeftY + height / 2;
+	}
+	
+	public void set(Airport a)
+	{
+		type = Type.LOCATION;
+		airport = a;
 	}
 }
