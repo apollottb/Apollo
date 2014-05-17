@@ -263,16 +263,7 @@ public class PdfAnalysis
 		
 		for (TripDraft trip : trips)
 		{
-			Trip t = new Trip();
-			
-			t.setAirline(trip.getAirline());
-			t.setDepartureTime(trip.getDepartureTime());
-			t.setDepartureDate(trip.getDepartureDate());
-			t.setArrivalTime(trip.getArrivalTime());
-			t.setArrivalDate(trip.getArrivalDate());
-			t.setOrigin(trip.getOrigin());
-			t.setDestination(trip.getDestination());
-			
+			Trip t = trip.getTrip();
 			finalTrips.add(t);
 		}
 		

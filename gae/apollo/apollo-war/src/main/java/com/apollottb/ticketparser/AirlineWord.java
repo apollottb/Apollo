@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class AirlineWord extends PdfWord
 {
 	Airline airline;
-	int flightNumber;
+	Integer flightNumber;	// Must be Integer instead of int (since we want null case).
 	
 	public AirlineWord(Airline a)
 	{

@@ -13,23 +13,47 @@ public class TripDraft
 	
 	private static final String UNKOWN = "Unkown";
 	
+	
 	public TripDraft()
 	{
 		// Empty.
 	}
 	
 	
-	public String getAirline()
+	public Trip getTrip()
+	{
+		Trip t = new Trip();
+		
+		t.setAirline(getAirline());
+		t.setDepartureTime(getDepartureTime());
+		t.setDepartureDate(getDepartureDate());
+		t.setArrivalTime(getArrivalTime());
+		t.setArrivalDate(getArrivalDate());
+		t.setOrigin(getOrigin());
+		t.setDestination(getDestination());
+		
+		return t;
+	}
+	
+	
+	private String getAirline()
 	{
 		if (airlineWord == null)
 		{
 			return UNKOWN;
 		}
 		
-		String s = "";
-		s += airlineWord.airline.name;
-		s += " (" + airlineWord.airline.iata + " " + airlineWord.flightNumber + ")";
-		return s;
+		String name = getText(airlineWord.airline.name);
+		String iata = getText(airlineWord.airline.iata);
+		String flightNumber = getText(airlineWord.flightNumber + "");
+		
+		return name + " (" + iata + " " + flightNumber + ")";
+	}
+	
+	
+	private static <T> String getText(T s)
+	{
+		return (s == null) ? UNKOWN : s.toString();
 	}
 	
 	
