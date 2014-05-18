@@ -96,6 +96,7 @@ ul#uppermenu li {
 }
 
 /* navigation bar */
+
 #navigation{
 	display: inline-block;
 	float: left;
@@ -112,6 +113,7 @@ ul#uppermenu li {
 }
 
 /* main container */
+
 #container{
 	width: auto;
 	min-width: 600px;
@@ -130,8 +132,23 @@ ul#uppermenu li {
 	font-size: 20px;
 	line-height: 1.6;
 }	
+.about {
+	display: block;
+	width: 600px;
+	margin: 10px 0 40px 15px;
+}
+.about h2 {
+	padding: 0 0 10px 0;
+}
+.about p {
+	font-weight: 300;
+	font-size: 24px;
+	line-height: 1.4;
+	padding-bottom: 30px;
+}
 
 /*upload buttons */
+
 #mainmenu {
 	font-size: 0.8em;
 }
@@ -148,18 +165,18 @@ ul#uppermenu li {
 	text-decoration:none;
 	text-align:center;
 	border-bottom: 1px solid #7f8c8d;
-	-o-transition:color .1s ease-out, background 0.1s ease-in;
-	-ms-transition:color .1s ease-out, background 0.1s ease-in;
-	-moz-transition:color .1s ease-out, background 0.1s ease-in;
-	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
-	transition:color .1s ease-out, background 0.1s ease-in;
+	-o-transition: color .1s ease-out, background 0.1s ease-in;
+	-ms-transition: color .1s ease-out, background 0.1s ease-in;
+	-moz-transition: color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition: color .1s ease-out, background 0.1s ease-in;
+	transition: color .1s ease-out, background 0.1s ease-in;
 	margin: 20px;
 	padding-top: 120px;
 	overflow: auto;
 }
 .menubutton:hover {
 	background: #fdf7f1;
-	transition:color .1s ease-out, background 0.1s ease-in;
+	transition: color .1s ease-out, background 0.1s ease-in;
 	cursor: pointer;
 }
 .menubutton:active {
@@ -183,7 +200,7 @@ ul#uppermenu li {
 }
 #uploadform:hover {
 	background: #fdf7f1;
-	transition:color .1s ease-out, background 0.1s ease-in;
+	transition: color .1s ease-out, background 0.1s ease-in;
 	cursor: pointer;
 }
 
@@ -229,6 +246,7 @@ ul#uppermenu li {
 }
 
 /*summary.jsp content styles*/
+
 dl.dlist {
 	padding: 15px;
 	display: inline-block;
@@ -253,11 +271,11 @@ dl.dlist dd {
 .listcontent {
 	width: 600px;
 	border-bottom: 1px solid #7f8c8d;
-	-o-transition:color .1s ease-out, background 0.1s ease-in;
-	-ms-transition:color .1s ease-out, background 0.1s ease-in;
-	-moz-transition:color .1s ease-out, background 0.1s ease-in;
-	-webkit-transition:color .1s ease-out, background 0.1s ease-in;
-	transition:color .1s ease-out, background 0.1s ease-in;
+	-o-transition: background-color .1s ease-out, background 0.1s ease-in;
+	-ms-transition: background-color .1s ease-out, background 0.1s ease-in;
+	-moz-transition: background-color .1s ease-out, background 0.1s ease-in;
+	-webkit-transition: background-color .1s ease-out, background 0.1s ease-in;
+	transition: background-color .1s ease-out, background 0.1s ease-in;
 }
 .listcontent:hover {
 	background: #fdf7f1;
@@ -361,6 +379,51 @@ dd span {
 	
 }
 .carrierlogo {
-	width: 200px;
-	
+	width: 200px;	
+}
+
+/*about*/
+
+.member {
+	display: inline-block;
+	padding: 30px 10px;
+}
+.profile {
+	display: inline-block;
+	width: 170px;
+	height: 170px;
+	background-size: cover;
+	border-radius: 85px;
+	-webkit-border-radius: 85px;
+	-moz-border-radius: 85px;
+	margin: 0px 10px;
+}
+.text {
+	height: 115px;
+	text-align: center;
+	padding-top: 55px;
+	opacity: 0; 
+}
+.text:hover {
+	opacity: 0.9;
+	background-color: #fdfdfd;
+	-webkit-transition: background-color 1s ease-out;
+	-moz-transition: background-color 1s ease-out;
+	-o-transition: background-color 1s ease-out;
+	transition: background-color 1s ease-out;
+}
+.text a:hover {
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+}
+#bumpei {
+	background-image: url('../pics/bumpei.jpg');
+	background-position: 
+}
+#takashi {
+	background-image: url('../pics/taro.jpg');
+}
+#taro {
+	background-image: url('../pics/taro.jpg');
 }
