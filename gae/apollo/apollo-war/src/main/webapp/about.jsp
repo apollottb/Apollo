@@ -30,7 +30,9 @@
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 		  ga('create', 'UA-50927827-1', 'apollo-13.appspot.com');
+		  ga('require', 'displayfeatures');
 		  ga('send', 'pageview');
+
 	</script>
 
 </head>

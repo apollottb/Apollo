@@ -30,6 +30,7 @@
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 		  ga('create', 'UA-50927827-1', 'apollo-13.appspot.com');
+		  ga('require', 'displayfeatures');
 		  ga('send', 'pageview');
 	</script>
 
@@ -51,12 +52,12 @@
 	<ul id ="navlist">
 		<li><a href="/">Home</a></li>
 		<li><a href="">FAQ</a></li>
-		<li><a href="">About</a></li>
+		<li><a href="about.jsp">About</a></li>
 	</ul>
 </div>
 <div id="container">
 	<div id="description">
-		<img src="pics/demo-2.0.gif" title="How to use Nektar"/>
+		<img src="pics/demo2.gif" title="How to use Nektar"/>
 		<!--
 		<p>
 		Nektar&trade; can help you better organize your piles of Etickets, hotel reservations and maps into a single and sleek itinerary made just for you. Simply drop your Eticket PDFs or forward E-mail confirmations to us, you will get the concise itinerary instantaneously. Click on the links to refer flight status, airport locations and more. 
