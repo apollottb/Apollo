@@ -1,4 +1,4 @@
-# Apollo: the Travel Organizer
+# Nektar: the Travel Organizer
 ![alt text](http://images.ksc.nasa.gov/photos/1972/high/KSC-72PC-0641.jpg)
 ### Mission Statement
 
@@ -35,7 +35,7 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 
 
 
-## Deadlines
+## Mission Timeline
 Apr 26: Working Prototype
 
 May 5-13: Finals
@@ -45,3 +45,9 @@ May 10: Prototype Beta
 May 15: Complete Product
 
 May 19: Commencement
+
+May 25: Bumpei departs to New York
+
+June 1: Takashi departs to Venezuela
+
+
