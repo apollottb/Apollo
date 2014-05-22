@@ -28,20 +28,22 @@
 	-webkit-border-radius: 85px;
 	-moz-border-radius: 85px;
 	margin: 0px 10px;
+	z-index: 10;
 }
-.text {
+.profile p {
 	height: 115px;
 	text-align: center;
 	padding-top: 55px;
 	opacity: 0; 
-}
-.text:hover {
-	opacity: 0.9;
-	background-color: #fdfdfd;
+	z-index: 20;
 	transition: background-color 1s ease-out;
 	-webkit-transition: background-color 1s ease-out;
 	-moz-transition: background-color 1s ease-out;
 	-o-transition: background-color 1s ease-out;
+	}
+.profile p:hover {
+	opacity: 0.9;
+	background-color: #fdfdfd;
 }
 .text a:hover {
 	text-decoration: none;
@@ -50,7 +52,6 @@
 }
 #bumpei {
 	background-image: url('../pics/bumpei.jpg');
-	background-position: 
 }
 #takashi {
 	background-image: url('../pics/takashi.jpg');

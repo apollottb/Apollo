@@ -83,7 +83,7 @@
 	</div>	
 	<div class="about">
 		<h2>Creative Philosophy</h2>
-		<p>We believe in </p>		
+		<p>We focus on our creative research on  </p>		
 	</div>
 	<div class="about">
 		<h2>Our Products</h2>
