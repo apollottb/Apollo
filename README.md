@@ -42,6 +42,7 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 * Tap to cross button
 * Promoting Image
 * Optimizing Description/App page http://www.apptamin.com/blog/optimize-play-store-app/
+* Google Analytics Tracking SDK + admob SDK package
 
 ## Mission Timeline
 Apr 26: Working Prototype
