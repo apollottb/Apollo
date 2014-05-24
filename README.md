@@ -39,8 +39,9 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 * https://developer.android.com/google/play-services/ads.html
 * http://stackoverflow.com/questions/2471417/embedding-ads-on-android-app
 * Problem with Galaxy S5
+* Tap to cross button
 * Promoting Image
-* Description
+* Optimizing Description/App page http://www.apptamin.com/blog/optimize-play-store-app/
 
 ## Mission Timeline
 Apr 26: Working Prototype
@@ -58,5 +59,7 @@ May 20: CrossingBot 1.0 Launch!
 May 25: Bumpei departs to New York
 
 June 1: Takashi departs to Venezuela
+
+???: CrossingBot 1.1 Launch
 
 ???: Nektar beta Launch
