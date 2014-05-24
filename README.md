@@ -35,6 +35,9 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 
 ###Things to Consider for ver 1.1
 * Implementing ads
+* admob http://www.google.com/ads/admob/
+* https://developer.android.com/google/play-services/ads.html
+* http://stackoverflow.com/questions/2471417/embedding-ads-on-android-app
 * Problem with Galaxy S5
 * Promoting Image
 * Description
