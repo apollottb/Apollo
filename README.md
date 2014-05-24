@@ -33,7 +33,11 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 ![alt text](http://1.bp.blogspot.com/_-mWOy3zohoU/S4MI-eoaSaI/AAAAAAAACmI/MxmoGFf_6aM/s320/traffic+cartoon.gif)
 ![alt text](http://www.hamilton-baillie.co.uk/_img/_cartoons/main.jpg)
 
-
+###Things to Consider for ver 1.1
+* Implementing ads
+* Problem with Galaxy S5
+* Promoting Image
+* Description
 
 ## Mission Timeline
 Apr 26: Working Prototype
@@ -46,8 +50,10 @@ May 15: Complete Product
 
 May 19: Commencement
 
+May 20: CrossingBot 1.0 Launch!
+
 May 25: Bumpei departs to New York
 
 June 1: Takashi departs to Venezuela
 
-
+???: Nektar beta Launch
