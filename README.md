@@ -42,7 +42,7 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 ![alt text](http://1.bp.blogspot.com/_-mWOy3zohoU/S4MI-eoaSaI/AAAAAAAACmI/MxmoGFf_6aM/s320/traffic+cartoon.gif)
 ![alt text](http://www.hamilton-baillie.co.uk/_img/_cartoons/main.jpg)
 
-###Things to Consider for ver 1.1
+### Things to Consider for ver 1.1
 * Implementing ads
 * admob http://www.google.com/ads/admob/
 * https://developer.android.com/google/play-services/ads.html
@@ -72,6 +72,13 @@ May 25: Bumpei departs to New York
 
 June 1: Takashi departs to Venezuela
 
-???: CrossingBot 1.1 Launch
+June 14: CrossingBot 1.1 Launch
 
-???: Nektar beta Launch
+June 25: Nektar beta Launch
+
+### Miscellaneous
+* Branding identity (logo, fonts, color schemes, brand images)
+* Mission statement
+* Description of the team Nector (will be on the web / on the nectar website)
+* Google app engine setup (transfer google wallet account to a PNC joint account)
+* Beware of overdraft
