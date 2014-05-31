@@ -10,6 +10,15 @@
 
 という３点から、旅行者関連の情報が増加している一方で、交通機関会社やホテル等の個々の予約情報について、統一的な整理はされておらず、旅行者が自身で整理する（E-チケットのプリントアウト、旅行用のメールボックスの作成、Dropboxへの転送）必要があるのが現状。旅行情報に限らず、個々人の扱う電子情報が煩雑化している中で、こうした旅行情報の整理は見落とされやすく、かつ、見落とした場合のコスト（交通機関の乗り過ごし・再予約／インターネット環境がない地域での予約状況の確認の困難等）を考えると、簡単に旅行情報をまとめ・複雑な旅行日程の友となるようなマネージメントツールを作ることが必要と考える。
 
+### Preparation for Upcoming Launch
+* Argorithm improvements
+* Saving uploaded pdfs on the server and make them accesible to us
+* Setting up listserv (cf. Lean Startup)
+* Cross browser support
+* Tablet and mobile phone support
+* Language support(?)
+* Marketing / beta-testing timelines, strategies
+
 # Game: Intersection Xing
 ![alt text](http://i.images.cdn.fotopedia.com/flickr-34117133-hd/New_York_City/Transportation/Taxicabs_of_New_York_City/Taxicabs_of_New_York_City.jpg)
 
@@ -43,6 +52,8 @@ Groundbreaking successes of rather simple mobile games such as FlappyBird and 20
 * Promoting Image
 * Optimizing Description/App page http://www.apptamin.com/blog/optimize-play-store-app/
 * Google Analytics Tracking SDK + admob SDK package
+* HighScore Implementation
+* Language Support (ZH, JP)(?)
 
 ## Mission Timeline
 Apr 26: Working Prototype
