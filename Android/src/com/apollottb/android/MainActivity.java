@@ -1,16 +1,17 @@
 package com.apollottb.android;
 import processing.core.*;
 
-
 public class MainActivity extends PApplet
 {
-    PFont Font1;
-    float personPositionX = 130.0f;
-    float personPositionY = 550.0f;
+	PFont font;
+	Robot robot;
+	Car[] cars;
+	final int CAR_COUNT = 4;
+	
     boolean isPersonMoving = false;  
     int score;
     
-    PImage imgBackgroudBack;
+    PImage imgBackgroundBack;
     PImage imgBackgroundGray; 
     PImage imgRobot;
     PImage imgRobot1;
@@ -25,10 +26,10 @@ public class MainActivity extends PApplet
     PImage imgBackgroundFront;
     PImage imgRetry;
     PImage imgRetryPressed;
-    PImage imgCarBlue;
-    PImage imgCarPink;
-    PImage imgCarGreen;
-    PImage imgCarYellow;
+    //PImage imgCarBlue;
+    //PImage imgCarPink;
+    //PImage imgCarGreen;
+    //PImage imgCarYellow;
     PImage imgWarp1;
     PImage imgWarp2;
     PImage imgWarp3;
@@ -45,15 +46,26 @@ public class MainActivity extends PApplet
     //screen touch & release
     boolean releaseScreen = false;
     boolean touchScreen = false; 
+    boolean buttonDown;
+    boolean buttonDragging;
     boolean isOnRetry;
+    boolean mouseDragged = false;
     
     int timer;
+    //final int displayWidth = 720;
+    //final int displayHeight = 400;//1289
+    final int WIDTH = 640;           // Original screen dimensions
+    final int HEIGHT = 1136;
+    
+    float scale;     //adjustment from original to display
+    float deltaX;
+    float deltaY;
     
     //blink
     boolean blinkingOn = true;
     int blinkSpeed = 12;
         
-    float[] listDistance; 
+    float[] distances; 
     
     //color
     int black = 0;
@@ -64,17 +76,20 @@ public class MainActivity extends PApplet
     int fallingRange; 
        
     //listSetting
-    float[] listX;
-    float[] listY;
-    float[] listWidth;
-    float[] listHeight;
-    float[] listSpeed;
+    //float[] carX;
+    //float[] carY;
+    //float carWidth;
+    //float carHeight;
+    //float[] carSpeed;
+    
+    //float robotWidth;
+    //float robotHeight;
        
     //retry button
-    int retryButtonX = 150;
-    int retryButtonY = 580;
-    int retryWidth = 200;
-    int retryHeight = 140; 
+    float retryButtonX = 150;
+    float retryButtonY = 580;
+    float retryWidth = 320;
+    float retryHeight = 140; 
       
     //define state 
     int state = 0;
@@ -85,15 +100,41 @@ public class MainActivity extends PApplet
     final int ROBOT_FROM_FACTORY = 4;
     final int SCREEN_SHAKING = 5;
     final int GAME_OVER = 6; 
-    
+   
+ 
     public void setup()
     {
         frameRate(60);
-        //size(640, 1136);
-        background(white); 
+        //size(displayWidth, displayHeight);
+        background(black); 
         
-        Font1 = createFont("NEOTECHPRO-BLACK.OTF", 70);
+        robot = new Robot();
+        robot.x = 130.0f;
+        robot.y = 550.0f;
         
+        cars = new Car[CAR_COUNT];
+        for (int i = 0; i < CAR_COUNT; ++i)
+        {
+        	cars[i] = new Car();
+        }
+        
+        
+        if (WIDTH/ displayWidth > HEIGHT / displayHeight)
+        {
+            scale = (float) WIDTH/ (float) displayWidth;
+            deltaX = 0;
+            deltaY = (displayHeight - HEIGHT/scale) / 2.0f;           
+        }
+        else
+        {
+            scale = (float) HEIGHT/ (float) displayHeight;
+            deltaX = (displayWidth - WIDTH/scale) /2.0f;
+            deltaY = 0;     
+            
+        }
+        
+        font = createFont("NEOTECHPRO-BLACK.OTF", 70/scale);
+       
         //image array
         imgRobotRunning = new PImage[3];
         imgWarping = new PImage[4];
@@ -101,121 +142,186 @@ public class MainActivity extends PApplet
         imgRobotFalling = new PImage[3];
  
         
-        //image     
-        String dir = "";
-        imgBackgroudBack = loadImage(dir + "Layer_Background-2.1.png");
-        imgBackgroundGray = loadImage(dir + "Background.jpg");
-        imgBackgroundGray.filter(GRAY);
-        imgRobot = loadImage(dir + "Robot-Runner.png");
-        imgRobot1 = loadImage(dir + "Robot-Runner.png");
-        imgRobotRunning[0] = loadImage(dir + "Robot_animation1.png");
-        imgRobotRunning[1] = loadImage(dir + "Robot_animation2.png");
-        imgRobotRunning[2] = loadImage(dir + "Robot_animation3.png");
-        imgRobotRunning[0].resize(0, 70);
-        imgRobotRunning[1].resize(0, 70);
-        imgRobotRunning[2].resize(0, 70);
-        imgRobotRunning[0].loadPixels();
-        imgRobotRunning[1].loadPixels();
-        imgRobotRunning[2].loadPixels();
-        imgRobotFalling[0] = loadImage(dir + "Robot-fall1.png");
-        imgRobotFalling[1] = loadImage(dir + "Robot-fall2.png");
-        imgRobotFalling[2] = loadImage(dir + "Robot-fall3.png");
-        imgOpening = loadImage(dir + "Opening-2.1.png");
-        imgRobotFalling[0].resize(0, 70);
-        imgRobotFalling[1].resize(0, 70);
-        imgRobotFalling[2].resize(0, 70);
-        imgRobotFalling[0].loadPixels();
-        imgRobotFalling[1].loadPixels();
-        imgRobotFalling[2].loadPixels();
-        imgBackgroundFull = loadImage(dir + "Background.jpg");
-        imgBackgroundFront = loadImage(dir + "Layer_Buildings-2.1.png"); 
+        // -----------------------------------------
+        // -------- Load & resize images -----------
+        // -----------------------------------------
         
-        imgRetry = loadImage(dir + "Retry2.1_Button.png"); 
-        imgRetryPressed = loadImage(dir + "Retry2.1_ButtonEngaged.png"); 
-        imgCarBlue =  loadImage(dir + "Car_bl.png"); 
-        imgCarPink =  loadImage(dir + "Car_pi.png"); 
-        imgCarGreen =  loadImage(dir + "Car_gr.png"); 
-        imgCarYellow = loadImage(dir + "Car_ye.png");
-        imgWarping[0] = loadImage(dir + "warp1.png");
-        imgWarping[1] = loadImage(dir + "warp2.png");
-        imgWarping[2] = loadImage(dir + "warp3.png");
-        imgWarping[3] = loadImage(dir + "warp4.png");
-        imgWarping[0].resize(0, 70);
-        imgWarping[1].resize(0, 70);
-        imgWarping[2].resize(0, 70);
-        imgWarping[3].resize(0, 70);
-        imgWarping[0].loadPixels();
-        imgWarping[1].loadPixels();
-        imgWarping[2].loadPixels();
-        imgWarping[3].loadPixels();
-        imgWarpingRobot[0] =loadImage(dir + "Robot-warp.png"); 
-        imgWarpingRobot[1] = loadImage(dir + "Robot-warp2.png");
-        imgWarpingRobot[2]= loadImage(dir + "Robot-warp2.png");
-        imgWarpingRobot[0].resize(0, 70);
-        imgWarpingRobot[1].resize(0, 70);
-        imgWarpingRobot[2].resize(0, 70);
-        imgWarpingRobot[0].loadPixels();
-        imgWarpingRobot[1].loadPixels();
-        imgWarpingRobot[2].loadPixels();
+        String directory = "";
         
-        //distance
-        listDistance = new float[4]; 
-     
-        //carX
-        listX = new float[4];
-        listX[0] = 224.0f;
-        listX[1] = 274.0f;
-        listX[2] = 326.0f; 
-        listX[3] = 376.0f;
+        imgBackgroundBack = loadImage(directory + "Layer_Background-2.1.png");
+        resize(imgBackgroundBack, 1136);
         
-        //carY
-        listY = new float[4];
-        listY[0] = 0;
-        listY[1] = 0;
-        listY[2] = 800.0f; 
-        listY[3] = 800.0f;
+        imgRobot = loadImage(directory + "Robot-Runner.png");
+        resize(imgRobot, 70);
         
-        //carWidth
-        listWidth = new float[4];
-        listWidth[0] = 35.0f;
-        listWidth[1] = 35.0f;
-        listWidth[2] = 35.0f; 
-        listWidth[3] = 35.0f;
+        imgRobot1 = loadImage(directory + "Robot-Runner.png");
+        resize(imgRobot1, 70);
         
-        //carHeight
-        listHeight = new float[4];
-        listHeight[0] = 60.0f; 
-        listHeight[1] = 60.0f;
-        listHeight[2] = 60.0f; 
-        listHeight[3] = 60.0f;
+        imgRobotRunning[0] = loadImage(directory + "Robot_animation1.png");
+        imgRobotRunning[1] = loadImage(directory + "Robot_animation2.png");
+        imgRobotRunning[2] = loadImage(directory + "Robot_animation3.png");
+        for (int i = 0; i < 3 ;i ++)
+        {
+            resize(imgRobotRunning[i], 70);
+        }
+        
+        imgRobotFalling[0] = loadImage(directory + "Robot-fall1.png");
+        imgRobotFalling[1] = loadImage(directory + "Robot-fall2.png");
+        imgRobotFalling[2] = loadImage(directory + "Robot-fall3.png");
+        for(int i = 0; i < 3; i ++)
+        {
+            resize(imgRobotFalling[i], 70);
+        }
+        
+        imgOpening = loadImage(directory + "Opening-2.1.png");
+        resize(imgOpening, 1136);
+ 
+        imgBackgroundFull = loadImage(directory + "Background.jpg");
+        resize(imgBackgroundFull, 1136);
+        
+        
+        imgBackgroundFront = loadImage(directory + "Layer_Buildings-2.1.png"); 
+        resize(imgBackgroundFront, 1136);
+        
+        imgRetry = loadImage(directory + "Retry2.1_Button.png"); 
+        resize(imgRetry, 1136);
+        
+        
+        imgRetryPressed = loadImage(directory + "Retry2.1_ButtonEngaged.png"); 
+        resize(imgRetryPressed, 1136);
+        
+        String[] carImgFileNames = {"Car_bl.png", "Car_pi.png", "Car_gr.png", "Car_ye.png"};
+        for (int i = 0; i < CAR_COUNT; ++i)
+        {
+        	Car c = cars[i];
+        	c.image = loadImage(directory + carImgFileNames[i]);
+        	resize(c.image, 70);
+        }
+        
+        
+        /*
+        imgCarBlue =  loadImage(directory + "Car_bl.png"); 
+        resize(imgCarBlue, 70);
+        
+        imgCarPink =  loadImage(directory + "Car_pi.png"); 
+        resize(imgCarPink, 70);
+        
+        imgCarGreen =  loadImage(directory + "Car_gr.png"); 
+        resize(imgCarGreen, 70);
+        
+        imgCarYellow = loadImage(directory + "Car_ye.png");
+        resize(imgCarYellow, 70);
+        */    
+        imgWarping[0] = loadImage(directory + "warp1.png");
+        imgWarping[1] = loadImage(directory + "warp2.png");
+        imgWarping[2] = loadImage(directory + "warp3.png");
+        imgWarping[3] = loadImage(directory + "warp4.png");
+        for (int i = 0; i < 4; i++)
+        {
+            resize(imgWarping[i], 70);
+        }
+        
+        imgWarpingRobot[0] =loadImage(directory + "Robot-warp.png"); 
+        imgWarpingRobot[1] = loadImage(directory + "Robot-warp2.png");
+        imgWarpingRobot[2]= loadImage(directory + "Robot-warp2.png");
+        for(int i =0; i < 3; i++)
+        {
+            resize(imgWarpingRobot[i], 70);
+        }
+        
+        // Distance between cars and robot.
+        distances = new float[4]; 
+        
+        // Car positions.
+        float[] tmpX = {224.0f, 274.0f, 326.0f, 376.0f};
+        float[] tmpY = {0.0f, 0.0f, HEIGHT, HEIGHT};
+        for (int i = 0; i < CAR_COUNT; ++i)
+        {
+        	cars[i].x = getX(tmpX[i]);
+        	cars[i].y = getY(tmpY[i]);
+        }
+        /*
+        carX = new float[4];
+        carX[0] = getX(224.0f);
+        carX[1] = getX(274.0f);
+        carX[2] = getX(326.0f); 
+        carX[3] = getX(376.0f);
+        
+        carY = new float[4];
+        carY[0] = getY(0);
+        carY[1] = getY(0);
+        carY[2] = getY(HEIGHT); 
+        carY[3] = getY(HEIGHT);
+        */
+        
+        // Car dimensions.
+        //carWidth = 35.0f/scale;
+        //carHeight = 60.0f/scale;
+        Car.width = 35.0f / scale;
+        Car.height = 60.0f / scale;
+        
+        //robot dimensions.
+        //robotWidth = 70.0f/scale;
+        //robotHeight = 70.0f/scale;
+        robot.width = 70.0f/scale;
+        robot.height = 70.0f/scale;
+        
         
         //carSpeed
-        listSpeed = new float[4];
-        listSpeed[0] = 2 + random(10);
-        listSpeed[1] = 2 + random(10);
-        listSpeed[2] = 2 + random(10); 
-        listSpeed[3] = 2 + random(10);
+        for (int i = 0; i < CAR_COUNT; ++i)
+        {
+        	cars[i].speed = (2 + random(10))/scale;
+        }
+        /*
+        carSpeed = new float[4];
+        for(int i = 0 ; i < 4 ; i++)
+        {
+            carSpeed[i] = (2 + random(10))/scale;   
+        }
+        */
+       
+        robot.x = getX(130);
+        robot.y = getY(550);
+        
+         retryButtonX = getX(150);
+         retryButtonY = getY(580);
+         retryWidth = 320/scale;
+         retryHeight = 140/scale; 
+       
     }
- 
-
+    
+    public void resize(PImage img, int imgHeight)
+    {
+        img.resize(0, (int) (imgHeight / scale));
+        img.loadPixels();
+    }
+    
+    public float getX(float originalX)
+    {
+        return originalX/scale + deltaX;
+    }
+    
+     public float getY(float originalY)
+    {
+        return originalY/scale + deltaY;
+    }
+    
+    
+    
     public void draw() 
     {
-    	background(color(0));
         switch (state)
         {
             case START:
-                image(imgOpening, 0, 0);
+                image(imgOpening, getX(0), getY(0));
                 if (frameCount % blinkSpeed == 0) { blinkingOn = !blinkingOn; }
                 if (blinkingOn) 
                 {
-                    textAlign(CENTER);
-                    textFont(Font1);
-                    textSize(60);
-                    fill(255);
-                    text("Tap to Start", 320, 750); 
-                    textSize(58);
                     fill(color(255, 0, 0));
-                    text("Tap to Start", 320, 750); 
+                    textFont(font);
+                    textAlign(CENTER);
+                    textSize(60/scale);
+                    text("Tap to Start", getX(320), getY(750)); 
                     fill(white);
                 }            
                 
@@ -231,16 +337,10 @@ public class MainActivity extends PApplet
                 }
                 break;
             case WAIT_FOR_CLICK:
-                image(imgBackgroudBack,0,0);  
-                imgRobot1.resize(0, 50);
-                imgRobot1.loadPixels();
-                
-                image(imgRobot1, 10, 25);
-                imgRobot.resize(0, 70);
-                imgRobot.loadPixels();
-                
-                image(imgRobot, personPositionX, personPositionY);
-                image(imgBackgroundFront,0,0);
+                image(imgBackgroundBack,getX(0), getY(0));  
+                image(imgRobot1, getX(10), getY(25));
+                image(imgRobot, robot.x, robot.y);
+                image(imgBackgroundFront, getX(0), getY(0));
                 gamePlay();
                 if ( touchScreen == true) 
                 {
@@ -252,24 +352,25 @@ public class MainActivity extends PApplet
                 }
                 break;
             case ROBOT_MOVING:
-                image(imgBackgroudBack,0,0);  
-                imgRobot1.resize(0, 50);
-                imgRobot1.loadPixels();
-                image(imgRobot1, 10, 25);
-                imgRobot.resize(0, 70);
-                imgRobot.loadPixels();
-                image(imgBackgroundFront,0,0);
+                image(imgBackgroundBack,getX(0),getY(0));  
+                image(imgRobot1, getX(10), getY(25));
+                image(imgBackgroundFront,getX(0),getY(0));
                 gamePlay();
                
                 timer = timer + 1;
                 for (int i = 0; i < 4; i++)
                 {
-                    listDistance[i]=(float) Math.sqrt(Math.pow(listX[i]+ 30 - personPositionX,2) + Math.pow(listY[i] - 17.5- 568, 2)); 
+                    //float dx = (carX[i] + carWidth/2.0f) - (robot.x + robotWidth/2.0f);
+                    //float dy = (carY[i] + carHeight/2.0f) - (robot.y + robotHeight/2.0f);
+                    float dx = (cars[i].x + Car.width/2.0f) - (robot.x + robot.width/2.0f);
+                    float dy = (cars[i].y + Car.height/2.0f) - (robot.y + robot.height/2.0f);
+                    distances[i] = (float) Math.sqrt(dx * dx + dy * dy); 
                 }
+                
+                
                 if (timer >= 0 && timer < 28)
                 {
                     drawRobotRunning(timer % 3);
-                    
                 }
                 if (timer >= 28)
                 {    
@@ -277,7 +378,7 @@ public class MainActivity extends PApplet
                     state = ROBOT_WARPING;
                     timer = 0;
                  }
-               if (listDistance[1] < 70.0f || listDistance[1] < 70.0f || listDistance[2] < 70.0f || listDistance[3] <  50.0f ) 
+               if (distances[0] < 50.0f/scale || distances[1] < 50.0f/scale || distances[2] < 50.0f/scale || distances[3] <  50.0f/scale ) 
                 {
                     state = SCREEN_SHAKING; 
                     touchScreen = false;
@@ -288,42 +389,41 @@ public class MainActivity extends PApplet
                 break;
 
             case ROBOT_WARPING:
-                image(imgBackgroudBack,0,0);  
-                imgRobot1.resize(0, 50);
-                imgRobot1.loadPixels();
-                image(imgRobot1, 10, 25);
-                image(imgBackgroundFront,0,0);
+                image(imgBackgroundBack,getX(0),getY(0));  
+                image(imgRobot1, getX(10), getY(25));
+                image(imgBackgroundFront,getX(0),getY(0));
                 gamePlay();
                 timer = timer + 1;  
-
+                
                 if(timer >= 1 && timer < 30)
                 {
-                     warpingRange = round(timer/5);
-                    drawRobotWarping(warpingRange % 3); 
+                    warpingRange = round(timer/5);
+                    drawRobotWarping(warpingRange % 3, timer-1); 
                 }
+                
                 if(timer == 30)
                 {
-                    personPositionX = 0; 
+                    robot.x = getX(0);
                     isPersonMoving = true;
                     state = ROBOT_FROM_FACTORY;
                     timer = 0;
+                    score= score + 1;
                 }
                 break;
             case ROBOT_FROM_FACTORY:
                 timer = timer + 1;
-                image(imgBackgroudBack,0,0);  
-                imgRobot1.resize(0, 50);
-                imgRobot1.loadPixels();
-                image(imgRobot1, 10, 25);
-                image(imgBackgroundFront,0,0);
+                image(imgBackgroundBack,getX(0),getY(0));  
+                image(imgRobot1, getX(10), getY(25));
+                image(imgBackgroundFront,getX(0),getY(0));
                 gamePlay();               
                 if(timer >= 0 && timer < 13)
                 {  
                    drawRobotRunning(timer % 3);
-                   image(imgBackgroundFront,0,0);
+                   image(imgBackgroundFront,getX(0),getY(0));
                 }
                 if(timer == 13)
                 {
+                	touchScreen = false;
                     timer = 0;
                     drawRobotRunning(0);
                     isPersonMoving = false;
@@ -334,54 +434,49 @@ public class MainActivity extends PApplet
             case SCREEN_SHAKING:  
                 timer = timer + 1;
                 background (white);
-                if(timer >= 10 && timer < 60)
+                if(timer >= 10 && timer < 30)
                 {
-                    drawBackground(); 
-                    imgRobot1.resize(0, 50);
-                    imgRobot1.loadPixels();
-                    image(imgRobot1, 10, 25);
-                    textFont(Font1);
+                	background(black);
+                    drawBackground(random(10)-5, random(10)-5); 
+                    image(imgRobot1, getX(10), getY(25));
+                    textFont(font);
                     fill(255, 0, 0);
-                    text(score, 100, 78);
+                    text(score, getX(140), getY(85));
                     fallingRange = round(timer/15); 
                     drawRobotFalling(fallingRange % 3);
                 }
+                if (timer >= 30 && timer < 60)
+	                drawBackground(0, 0); 
+	                image(imgRobot1, getX(10), getY(25));
+	                textFont(font);
+	                fill(255, 0, 0);
+	                text(score, getX(140), getY(85));
+	                fallingRange = round(timer/15); 
+	                drawRobotFalling(fallingRange % 3);
                 if (timer == 60)
                 {  
-                    drawBackground();
-                    imgRobot1.resize(0, 50);
-                    imgRobot1.loadPixels();
-                    image(imgRobot1, 10, 25);
-                    textFont(Font1);
+                    drawBackground(0, 0);
+                    image(imgRobot1, getX(10), getY(25));
+                    textFont(font);
                     fill(255, 0, 0);
-                    text(score, 100, 78);
+                    text(score, getX(140), getY(85));
                     state = GAME_OVER;
                     timer = 0;
                 }
                 break;
-            case GAME_OVER:
-            image(imgRetry, 0, 0);
-            textFont(Font1);
-            fill(black);
-            textSize(100);
-            text(score, 290, 300);
-            if (isOnRetry() == true && touchScreen == true)
+                
+        case GAME_OVER:
+            if(buttonDown == true)
             {
-                image(imgRetryPressed, 0, 0);
-                fill(black);
-                textSize(100);
-                text(score, 290, 300);           
+                drawButtonDown();
             }
-            if (isOnRetry() == true && releaseScreen == true)
+            else
             {
-                image(imgRetry, 0, 0);
+                image(imgRetry, getX(0),getY (0));
+                textFont(font);
                 fill(black);
-                textSize(100);
-                text(score, 290, 300);    
-                state = WAIT_FOR_CLICK;
-                score = 0;
-                touchScreen = false;
-                personPositionX = 130;
+                textSize(100/scale);
+                text(score, getX(WIDTH/2), getY(300));
             }
             break;
         }
@@ -389,94 +484,129 @@ public class MainActivity extends PApplet
     
     public void gamePlay()
     {
+    	for (int i = 0; i < CAR_COUNT; ++i)
+    	{
+    		Car c = cars[i];
+    		
+    		switch(i)
+    		{
+    		case 0:
+    		case 1:
+    			c.y += c.speed / scale;
+    			
+    	        if (c.y > displayHeight)
+    	        {
+    	            c.y = 0.0f;      
+    	        }
+    			break;
+    		case 2:
+    		case 3:
+    			c.y -= c.speed / scale;
+    			
+    	        if (c.y < 0)
+    	        {
+    	            c.y = displayHeight;
+    	        }
+    			break;
+    		}
+    		c.speed = 5.0f + random(10.0f)/scale;
+    		image(c.image, c.x, c.y);
+    	}
+    	/*
+        // Move rectangle1 downward.
+        carY[0] = carY[0] + carSpeed[0]/scale;
     	
-        //distance
-        float[]listDistance = new float[4];          
-        
-        // Move rectangle1 a little bit downward.
-        listY[0] = listY[0] + listSpeed[0];
         
         // If rectangle1 goes outside of the screen, reset its position and change its speed.
-        if (listY[0] > displayHeight)
+        if (carY[0] > displayHeight)
         {
-            listY[0] = 0;
-            listSpeed[0] = 2 + random(10.0f);      
+            carY[0] = 0;
+            carSpeed[0] = 5 + random(10.0f)/scale;      
         }
         
         // Move rectangle2 a little bit downward.
-        listY[1] = listY[1] + listSpeed[1];
+        carY[1] = carY[1] + carSpeed[1]/scale;
         
         // If rectangle1 goes outside of the screen, reset its position and change its speed.
-        if (listY[1] > displayHeight)
+        if (carY[1] > displayHeight)
         {
-            listY[1] = 0;
-            listSpeed[1] = 2 +random(10.0f);
+            carY[1] = 0;
+            carSpeed[1] = 5 +random(10.0f)/scale;
         }
         
         // Move rectangle1 a little bit upward.
-        listY[2] = listY[2] - listSpeed[2];
+        carY[2] = carY[2] - carSpeed[2]/scale;
         
         // If rectangle1 goes outside of the screen, reset its position and change its speed.
-        if (listY[2] < 0)
+        if (carY[2] < 0)
         {
-            listY[2] = displayHeight;
-            listSpeed[2] = 2 + random(10.0f);
+            carY[2] = HEIGHT;
+            carSpeed[2] = 2 + random(10.0f)/scale;
         }    
         // Move rectangle1 a little bit upward.
-        listY[3] = listY[3] - listSpeed[3];
+        carY[3] = carY[3] - carSpeed[3];
         
         // If rectangle1 goes outside of the screen, reset its position and change its speed.
-        if (listY[3] < 0)
+        if (carY[3] < 0)
         {
-            listY[3] = displayHeight;
-            listSpeed[3] = 2 + random(10.0f);
+            carY[3] = HEIGHT;
+            carSpeed[3] = 2 + random(10.0f)/scale;
         }
+        
                
         // Car1
-        imgCarBlue.resize(0, 80);
-        imgCarBlue.loadPixels();
-        image(imgCarBlue, listX[0], listY[0]);
+        image(imgCarBlue, carX[0], carY[0]);
         
         //Car2
-        imgCarPink.resize(0, 80);
-        imgCarPink.loadPixels();
-        image(imgCarPink, listX[1], listY[1]); 
+        image(imgCarPink, carX[1], carY[1]); 
         
         //Car3
-        imgCarGreen.resize(0, 80);
-        imgCarGreen.loadPixels();
-        image(imgCarGreen, listX[2], listY[2]);
+        image(imgCarGreen, carX[2], carY[2]);
         
         //Car4
-        imgCarYellow.resize(0, 80);
-        imgCarYellow.loadPixels();
-        image(imgCarYellow, listX[3], listY[3]);
+        image(imgCarYellow, carX[3], carY[3]);
+        */
 
         if (isPersonMoving == true)
         {
-            personPositionX= personPositionX + 10; 
+        	robot.x = robot.x + 10/scale;
         }        
               
         //score board
-        textFont(Font1);
+        textFont(font);
         fill(255, 0, 0);
-        text(score, 100, 78);
-        
-        //add score
-        if (personPositionX == 400 )
-        {
-            score= score + 1;
-        }
+        text(score, getX(140), getY(85));
+ 
     }
     
     public void mousePressed()
     {
         touchScreen = true;
+        if (state == GAME_OVER)
+        {
+             if(isOnRetry() == true)
+                {
+                    buttonDown = true;
+                    buttonDragging = true;
+                }
+        }
     }
     
     public void mouseReleased()  
     {
-       releaseScreen = true;
+        releaseScreen = true;
+        if(state == GAME_OVER)
+        {
+            if(buttonDragging == true && isOnRetry() == true) 
+            {
+                state = WAIT_FOR_CLICK;
+                robot.x = getX(130);
+                score = 0;
+                touchScreen = false;
+            }     
+        }
+        buttonDown = false;
+        buttonDragging = false;
     }   
     
     boolean isOnRetry()
@@ -490,32 +620,68 @@ public class MainActivity extends PApplet
             return false;
         }
     }
-    public void drawBackground()
+    public void drawBackground(float x, float y)
     {
-        image(imgBackgroudBack,0,0);  
-        image(imgBackgroundFront,0,0);
-        image(imgCarBlue, listX[0], listY[0]);
-        image(imgCarPink, listX[1], listY[1]);
-        image(imgCarGreen, listX[2], listY[2]);
-        image(imgCarYellow, listX[3], listY[3]);
-        
+        image(imgBackgroundBack,getX(x),getY(y));  
+        image(imgBackgroundFront,getX(x),getY(y));
+        /*
+        image(imgCarBlue, carX[0], carY[0]);
+        image(imgCarPink, carX[1], carY[1]);
+        image(imgCarGreen, carX[2], carY[2]);
+        image(imgCarYellow, carX[3], carY[3]);
+        */
+        for (int i = 0; i < CAR_COUNT; ++i)
+        {
+        	Car c = cars[i];
+        	image(c.image, c.x, c.y);
+        }
     }
-    
-    
+   
    
    public void drawRobotRunning(int i)
     {
-        image(imgRobotRunning[i], personPositionX, personPositionY);
+	   image(imgRobotRunning[i], robot.x, robot.y);
     }
   
-   public void drawRobotWarping(int i)
+   int[] isWarpVisible = {1,1,1,1,1, 0,0,0,0,0, 1,1,1,1,0, 0,0,0,0,0, 1,1,0,0,0, 0,0,1,0,0};
+   public void drawRobotWarping(int i, int j)
    {
-       image(imgWarping[i], personPositionX, personPositionY);
-       image(imgWarpingRobot[i], personPositionX, personPositionY);
+	   image(imgWarping[0], robot.x, robot.y);
+       if (isWarpVisible[j] == 1)
+       {
+    	   image(imgWarpingRobot[i], robot.x, robot.y);
+       }
+       image(imgWarping[1], robot.x, robot.y);
    }
    
    public void drawRobotFalling(int i)
    {
-       image(imgRobotFalling[i], personPositionX, personPositionY);
+	   image(imgRobotFalling[i], robot.x, robot.y);
    }
+   
+   public void drawButtonDown()
+   {
+       image(imgRetryPressed, getX(0), getY(0));
+       textFont(font);
+       fill(black);
+       textSize(100/scale);
+       text(score, getX(WIDTH/2), getY(300));
+   }
+   
+   public void mouseDragged()
+   {
+           if (state == GAME_OVER)
+           {
+               if(isOnRetry() && buttonDragging)
+               {
+                   buttonDown = true;
+               }
+               else
+               {     
+                   buttonDown = false;
+               }
+           }
+   }
+ 
 }  
+   
