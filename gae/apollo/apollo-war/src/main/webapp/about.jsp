@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
 <head>
 	<!-- meta -->
 	<meta charset="utf-8">
@@ -15,12 +16,13 @@
 	<!-- css -->
 	<link rel="stylesheet" href="css/reset.css" media="all">
 	<link rel="stylesheet" href="css/style.css" media="all">
+	<link rel="stylesheet" href="css/about.css" media="all">
 
 	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 	<!-- ga -->
 	<script>
@@ -30,7 +32,9 @@
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 		  ga('create', 'UA-50927827-1', 'apollo-13.appspot.com');
+		  ga('require', 'displayfeatures');
 		  ga('send', 'pageview');
+
 	</script>
 
 </head>
@@ -64,7 +68,7 @@
 	
 	<div class="about">
 		<h2>Our Team</h2>
-		<p>Team Nektar is ...</p>
+		<p>Team Nektar was formed by three students at the University of Pennsylvania in Spring 2014. </p>
 		<div class="member">
 			<div class="profile" id="bumpei">
 				<p class="text"><a href="">Bumpei Sugano</br>Developer</a></p>
@@ -79,11 +83,14 @@
 	</div>	
 	<div class="about">
 		<h2>Creative Philosophy</h2>
-		<p>We believe in ...</p>		
+		<p>We focus on our creative research on  </p>		
 	</div>
 	<div class="about">
 		<h2>Our Products</h2>
-		<p>We have ...</p>		
+		<p>We have ...</p>
+		<a href="https://play.google.com/store/apps/details?id=CrossingBot">
+			<img alt="Android app on Google Play" src="/images/brand/en_app_rgb_wo_60.png" />
+		</a>		
 	</div>
 </div>
 

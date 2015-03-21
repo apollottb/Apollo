@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
 <head>
 	<!-- meta -->
 	<meta charset="utf-8">
@@ -10,17 +11,17 @@
 	<link rel="icon" type="image/png" href="pics/favicon.png">
 
 	<!-- title+description -->
-	<title>Nektar : Trip Organizer</title>
+	<title>Nektar: Trip Organizer</title>
 
 	<!-- css -->
 	<link rel="stylesheet" href="css/reset.css" media="all">
 	<link rel="stylesheet" href="css/style.css" media="all">
 
 	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
 	<!-- js+jquery -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 	<!-- ga -->
 	<script>
@@ -30,6 +31,7 @@
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 		  ga('create', 'UA-50927827-1', 'apollo-13.appspot.com');
+		  ga('require', 'displayfeatures');
 		  ga('send', 'pageview');
 	</script>
 
@@ -51,17 +53,12 @@
 	<ul id ="navlist">
 		<li><a href="/">Home</a></li>
 		<li><a href="">FAQ</a></li>
-		<li><a href="">About</a></li>
+		<li><a href="about.jsp">About</a></li>
 	</ul>
 </div>
 <div id="container">
 	<div id="description">
-		<img src="pics/demo-2.0.gif" title="How to use Nektar"/>
-		<!--
-		<p>
-		Nektar&trade; can help you better organize your piles of Etickets, hotel reservations and maps into a single and sleek itinerary made just for you. Simply drop your Eticket PDFs or forward E-mail confirmations to us, you will get the concise itinerary instantaneously. Click on the links to refer flight status, airport locations and more. 
-		</p>
-		-->
+		<img src="pics/demo2.gif" title="How to use Nektar"/>
 	</div>
 	
 	<div align="center" id="mainmenu">

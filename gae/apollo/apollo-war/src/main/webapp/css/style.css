@@ -132,20 +132,6 @@ ul#uppermenu li {
 	font-size: 20px;
 	line-height: 1.6;
 }	
-.about {
-	display: block;
-	width: 600px;
-	margin: 10px 0 40px 15px;
-}
-.about h2 {
-	padding: 0 0 10px 0;
-}
-.about p {
-	font-weight: 300;
-	font-size: 24px;
-	line-height: 1.4;
-	padding-bottom: 30px;
-}
 
 /*upload buttons */
 
@@ -262,6 +248,7 @@ dl.dlist dd {
 	padding: 10px;
 	overflow: auto;
 }
+
 .listnav {
 	width: 600px;
 	border-bottom: 1px solid #7f8c8d;
@@ -366,12 +353,16 @@ dl.loglist dt {
 dl.loglist dd {
 	padding: 10px;
 	overflow: auto;
+	line-height: 1.3;
 }
+
 dt span {
 	font-size: 15px;
+	background-color: transparent;
 }
 dd span {
 	font-size: 15px;
+	background-color: transparent;
 }
 .transfer {
 	width: 3%;
@@ -380,50 +371,4 @@ dd span {
 }
 .carrierlogo {
 	width: 200px;	
-}
-
-/*about*/
-
-.member {
-	display: inline-block;
-	padding: 30px 10px;
-}
-.profile {
-	display: inline-block;
-	width: 170px;
-	height: 170px;
-	background-size: cover;
-	border-radius: 85px;
-	-webkit-border-radius: 85px;
-	-moz-border-radius: 85px;
-	margin: 0px 10px;
-}
-.text {
-	height: 115px;
-	text-align: center;
-	padding-top: 55px;
-	opacity: 0; 
-}
-.text:hover {
-	opacity: 0.9;
-	background-color: #fdfdfd;
-	-webkit-transition: background-color 1s ease-out;
-	-moz-transition: background-color 1s ease-out;
-	-o-transition: background-color 1s ease-out;
-	transition: background-color 1s ease-out;
-}
-.text a:hover {
-	text-decoration: none;
-	border: none;
-	cursor: pointer;
-}
-#bumpei {
-	background-image: url('../pics/bumpei.jpg');
-	background-position: 
-}
-#takashi {
-	background-image: url('../pics/taro.jpg');
-}
-#taro {
-	background-image: url('../pics/taro.jpg');
 }
