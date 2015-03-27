@@ -1,18 +1,20 @@
 package com.apollottb.android;
-import processing.core.PImage;
 
-public class Car
+import processing.core.PApplet;
+
+public class Car extends DisplayObject
 {
-	public static float width;
-	public static float height;
-	
-	public float x;
-	public float y;
 	public float speed;
-	public PImage image;
 	
-	public Car()
+	
+	public Car(PApplet applet, Transformation screenTransformation, String imgFileName)
 	{
-		//image = new PImage();
+		super(applet, screenTransformation, imgFileName);
+	}
+	
+	
+	public void tick()
+	{
+		y += speed;
 	}
 }
